@@ -3,11 +3,11 @@
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='值得紀念的第一篇文章，所以紀錄一下 Hugo 建置過程'><title>Hugo 紀錄</title>
 
-<link rel='canonical' href='https://example.com/p/hugo-%E7%B4%80%E9%8C%84/'>
+<link rel='canonical' href='https://yuuuna.github.io/p/hugo-%E7%B4%80%E9%8C%84/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Hugo 紀錄'>
 <meta property='og:description' content='值得紀念的第一篇文章，所以紀錄一下 Hugo 建置過程'>
-<meta property='og:url' content='https://example.com/p/hugo-%E7%B4%80%E9%8C%84/'>
+<meta property='og:url' content='https://yuuuna.github.io/p/hugo-%E7%B4%80%E9%8C%84/'>
 <meta property='og:site_name' content='Yuuna Place'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Hugo' /><meta property='article:published_time' content='2021-03-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-03-12T00:00:00&#43;00:00'/>
 <meta name="twitter:site" content="YuuunaChang"><meta name="twitter:title" content="Hugo 紀錄">
@@ -61,7 +61,7 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://example.com">Yuuna Place</a></h1>
+        <h1 class="site-name"><a href="https://yuuuna.github.io">Yuuna Place</a></h1>
         <h2 class="site-description"></h2>
     </header>
 
@@ -169,7 +169,7 @@
 
             <main class="main full-width">
     <div id="article-toolbar">
-        <a href="https://example.com" class="back-home">
+        <a href="https://yuuuna.github.io" class="back-home">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <polyline points="15 6 9 12 15 18" />
@@ -238,6 +238,9 @@
 </code></pre><h3 id="新增文章">新增文章</h3>
 <p>我的專案是以資料夾在使用 index.md，也有其他主題可能不需要墊一層資料夾，直接以 .md 檔案，ex. how-to-use-css.md。</p>
 <pre><code>$ hugo new post/&lt;folder-name&gt;/index.md
+</code></pre><h3 id="部署設定">部署設定</h3>
+<p>若有要部署至 Github，須將 <code>config.yaml</code> 的 <code>baseurl</code> 調整為自己的網址</p>
+<pre><code>baseurl: https://yuuuna.github.io
 </code></pre>
 </section>
 

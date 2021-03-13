@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Yuuna Place</title>
-        <link>https://example.com/</link>
+        <link>https://yuuuna.github.io/</link>
         <description>Recent content on Yuuna Place</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuuna.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo 紀錄</title>
-        <link>https://example.com/p/hugo-%E7%B4%80%E9%8C%84/</link>
+        <link>https://yuuuna.github.io/p/hugo-%E7%B4%80%E9%8C%84/</link>
         <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/hugo-%E7%B4%80%E9%8C%84/</guid>
+        <guid>https://yuuuna.github.io/p/hugo-%E7%B4%80%E9%8C%84/</guid>
         <description>&lt;p&gt;值得紀念的第一篇文章，所以紀錄一下方法&lt;/p&gt;
 &lt;h3 id=&#34;本機安裝-hugo&#34;&gt;本機安裝 Hugo&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;$ brew install hugo
@@ -29,6 +29,9 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;新增文章&#34;&gt;新增文章&lt;/h3&gt;
 &lt;p&gt;我的專案是以資料夾在使用 index.md，也有其他主題可能不需要墊一層資料夾，直接以 .md 檔案，ex. how-to-use-css.md。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ hugo new post/&amp;lt;folder-name&amp;gt;/index.md
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;部署設定&#34;&gt;部署設定&lt;/h3&gt;
+&lt;p&gt;若有要部署至 Github，須將 &lt;code&gt;config.yaml&lt;/code&gt; 的 &lt;code&gt;baseurl&lt;/code&gt; 調整為自己的網址&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;baseurl: https://yuuuna.github.io
 &lt;/code&gt;&lt;/pre&gt;</description>
         </item>
         
