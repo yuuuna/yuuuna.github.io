@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Yuuna Place</title>
-    <link>https://yuuna.dev/post/</link>
-    <description>Recent content in Posts on Yuuna Place</description>
+    <title>Spring-Framework on Yuuna Place</title>
+    <link>https://yuuna.dev/categories/spring-framework/</link>
+    <description>Recent content in Spring-Framework on Yuuna Place</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/categories/spring-framework/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
       <link>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
@@ -17,21 +17,6 @@
 特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 先於網站中下載 Jasypt 檔案：Download
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
 $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40] 加密 使用 bin/encrypt.sh 來進行加密，執行此檔案可看到應填入的欄位有哪些。</description>
-    </item>
-    
-    <item>
-      <title>Hugo 紀錄</title>
-      <link>https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/</link>
-      <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/</guid>
-      <description>值得紀念的第一篇文章，所以紀錄一下方法
-本機安裝 Hugo $ brew install hugo 選擇主題 於 Theme 挑選一個自己喜歡的主題，記得注意 License 。
-建置專案 $ hugo new site &amp;lt;site-name&amp;gt; 主題有提供教學 然後可以依照選擇主題裡的教學方式繼續完成建置(如果他有提供教學的話)。
-主題未提供 至主題的 Git 將 Theme 下載下來，放進專案的 Theme 資料夾裡，以及確認 config.toml 或 config.yaml 的設定(當然主題有提供最好&amp;hellip;)。
-啟動專案 $ hugo serve 新增文章 我的專案是以資料夾在使用 index.md，也有其他主題可能不需要墊一層資料夾，直接以 .md 檔案，ex. how-to-use-css.md。
-$ hugo new post/&amp;lt;folder-name&amp;gt;/index.md 部署設定 若有要部署至 Github，須將 config.yaml 的 baseurl 調整為自己的網址
-baseurl: https://yuuuna.github.io </description>
     </item>
     
   </channel>

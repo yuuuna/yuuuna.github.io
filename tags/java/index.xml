@@ -5,19 +5,18 @@
     <link>https://yuuna.dev/tags/java/</link>
     <description>Recent content in JAVA on Yuuna Place</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 13 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Sprint Framework 使用 jasypt 加密 config 檔案</title>
-      <link>https://yuuna.dev/p/sprint-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
-      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      <title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
+      <link>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
+      <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuna.dev/p/sprint-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
-      <description>實作介紹 引用 jasypt 套件 於 pom.xml 新增套件，
-套件版本的選擇若為 Sprint 3.0 或 3.1 使用 jasypt-spring31 版本，
-若為 Sprint 4.0 使用 jasypt-spring4 版本，本文以使用 4.0 版本。
-其他版本可於網站中尋找：網站
-&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.jasypt&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jasypt&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.jasypt&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jasypt-spring4&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; </description>
+      <guid>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
+      <description>Jasypt 介紹 Jasypt 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。
+特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 先於網站中下載 Jasypt 檔案：Download
+演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
+$ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40] 加密 使用 bin/encrypt.sh 來進行加密，執行此檔案可看到應填入的欄位有哪些。</description>
     </item>
     
   </channel>

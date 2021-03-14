@@ -5,14 +5,239 @@
         <link>https://yuuna.dev/</link>
         <description>Recent content on Yuuna Place</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
-        <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>zh-TW</language>
+        <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
+        <link>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
+        <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
+        <description>&lt;img src="https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/kitty-cat-helps-at-work.jpeg" alt="Featured image of post Spring Framework 使用 Jasypt 加密 config 檔案" /&gt;&lt;h2 id=&#34;jasypt-介紹&#34;&gt;Jasypt 介紹&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.jasypt.org/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Jasypt&lt;/a&gt; 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。&lt;/p&gt;
+&lt;h3 id=&#34;特點&#34;&gt;特點&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;單向與雙向加密的安全性，使用標準的加密技術。&lt;/li&gt;
+&lt;li&gt;提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。&lt;/li&gt;
+&lt;li&gt;提高使用者密碼的安全性。&lt;/li&gt;
+&lt;li&gt;於 Spring 簡單使用加解密技術。&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.jasypt.org/features.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;更多其他特點&amp;hellip;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;使用-jasypt-cli-tools-加解密資料&#34;&gt;使用 Jasypt CLI Tools 加解密資料&lt;/h3&gt;
+&lt;p&gt;先於網站中下載 Jasypt 檔案：&lt;a class=&#34;link&#34; href=&#34;http://www.jasypt.org/download.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Download&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;演算法的選擇&#34;&gt;演算法的選擇&lt;/h4&gt;
+&lt;p&gt;​使用 &lt;code&gt;bin/listAlgorithms.sh&lt;/code&gt; 查看可使用的演算法清單。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sh ./listAlgorithms.sh  
+   
+DIGEST ALGORITHMS:  [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256]  
+   
+PBE ALGORITHMS:   [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]  
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;加密&#34;&gt;加密&lt;/h4&gt;
+&lt;p&gt;使用 &lt;code&gt;bin/encrypt.sh&lt;/code&gt; 來進行加密，執行此檔案可看到應填入的欄位有哪些。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sh ./encrypt.sh
+
+USAGE: encrypt.sh [ARGUMENTS]
+
+  * Arguments must apply to format:
+
+      &amp;quot;arg1=value1 arg2=value2 arg3=value3 ...&amp;quot;
+
+  * Required arguments:
+
+      input
+      password
+
+  * Optional arguments:
+
+      verbose
+      algorithm
+      keyObtentionIterations
+      saltGeneratorClassName
+      providerName
+      providerClassName
+      stringOutputType
+      ivGeneratorClassName
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;​可觀察到必要填入有 &lt;code&gt;input&lt;/code&gt; 與 &lt;code&gt;password&lt;/code&gt; 兩個欄位。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;input&lt;/code&gt; 為要加密的文字。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;password&lt;/code&gt; 為加解密使用的 Key。&lt;/li&gt;
+&lt;li&gt;​​​​[可選] &lt;code&gt;algorithm&lt;/code&gt; 為使用哪種演算法來加密。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那現在以 input 為 password123，password 為 CAT，而演算法選擇 PBEWithMD5AndDES 來進行加密。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sh ./encrypt.sh input=password123 password=CAT algorithm=PBEWithMD5AndDES
+
+----ENVIRONMENT-----------------
+
+Runtime: Azul Systems, Inc. OpenJDK 64-Bit Server VM 25.172-b01
+
+----ARGUMENTS-------------------
+
+algorithm: PBEWithMD5AndDES
+input: password123
+password: CAT
+
+----OUTPUT----------------------
+
+31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;這樣就完成了加密，而加密過後的密碼為 &lt;code&gt;31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj&lt;/code&gt;，網站中就可以使用這組已加密的密碼。&lt;/p&gt;
+&lt;h4 id=&#34;解密&#34;&gt;解密&lt;/h4&gt;
+&lt;p&gt;可使用 &lt;code&gt;bin/decrypt.sh&lt;/code&gt; 進行解密，執行此檔案可看到應填入的欄位有哪些，基本上與加密相同。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sh ./decrypt.sh
+
+USAGE: decrypt.sh [ARGUMENTS]
+
+  * Arguments must apply to format:
+
+      &amp;quot;arg1=value1 arg2=value2 arg3=value3 ...&amp;quot;
+
+  * Required arguments:
+
+      input
+      password
+
+  * Optional arguments:
+
+      verbose
+      algorithm
+      keyObtentionIterations
+      saltGeneratorClassName
+      providerName
+      providerClassName
+      stringOutputType
+      ivGeneratorClassName
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;那現在將剛剛加密過後的密碼進行解密，input 為 31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj，password 為 CAT，演算法為 PBEWithMD5AndDES。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sh ./decrypt.sh input=31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj password=CAT algorithm=PBEWithMD5AndDES
+
+----ENVIRONMENT-----------------
+
+Runtime: Azul Systems, Inc. OpenJDK 64-Bit Server VM 25.172-b01
+
+----ARGUMENTS-------------------
+
+algorithm: PBEWithMD5AndDES
+input: 31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj
+password: CAT
+
+----OUTPUT----------------------
+
+password123
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;​輸出結果得到 password123，成功進行解密。&lt;/p&gt;
+&lt;h2 id=&#34;spring-framework-使用-jasypt-套件&#34;&gt;Spring Framework 使用 Jasypt 套件&lt;/h2&gt;
+&lt;h3 id=&#34;匯入-jasypt-套件&#34;&gt;匯入 Jasypt 套件&lt;/h3&gt;
+&lt;p&gt;於 &lt;code&gt;pom.xml&lt;/code&gt; 新增套件，&lt;br&gt;
+套件版本的選擇若為 Sprint 3.0 或 3.1 使用 &lt;code&gt;jasypt-spring31&lt;/code&gt; 版本，&lt;br&gt;
+若為 Sprint 4.0 使用 &lt;code&gt;jasypt-spring4&lt;/code&gt; 版本，本文以使用 4.0 版本。&lt;br&gt;
+其他版本可於網站中尋找：&lt;a class=&#34;link&#34; href=&#34;http://www.jasypt.org/spring31.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;網站&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.jasypt&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;jasypt&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.jasypt&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;jasypt-spring4&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;調整-spring-配置&#34;&gt;調整 Spring 配置&lt;/h3&gt;
+&lt;p&gt;設定環境變數與套件相關配置。&lt;/p&gt;
+&lt;p&gt;這邊設定 Key 的方法有兩種，&lt;br&gt;
+第一種是直接寫在設定檔案裡，name 設定 password，value 給予 Key，&lt;br&gt;
+第二種是設定在 Server 的環境變數裡，name 設定 passwordEnvName，value 給予環境變數名稱。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- 設定環境變數 --&amp;gt;
+&amp;lt;bean id=&amp;quot;environmentVariablesConfiguration&amp;quot; class=&amp;quot;org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;algorithm&amp;quot; value=&amp;quot;PBEWithMD5AndDES&amp;quot; /&amp;gt;
+    
+    &amp;lt;!-- 方法一：將 key 直接設定在這裡 --&amp;gt;
+    &amp;lt;property name=&amp;quot;password&amp;quot; value=&amp;quot;CAT&amp;quot; /&amp;gt;
+    &amp;lt;!-- 方法二：將 key 設定在 Server 的環境變數 --&amp;gt;
+    &amp;lt;property name=&amp;quot;passwordEnvName&amp;quot; value=&amp;quot;WEB_PASSWORD&amp;quot; /&amp;gt;
+&amp;lt;/bean&amp;gt;
+
+&amp;lt;!-- 解密配置值設定 --&amp;gt;
+&amp;lt;bean id=&amp;quot;configurationEncryptor&amp;quot; class=&amp;quot;org.jasypt.encryption.pbe.StandardPBEStringEncryptor&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;config&amp;quot; ref=&amp;quot;environmentVariablesConfiguration&amp;quot; /&amp;gt;
+&amp;lt;/bean&amp;gt;
+
+&amp;lt;!-- Spring Properties 設定 --&amp;gt;
+&amp;lt;bean class=&amp;quot;org.jasypt.spring4.properties.EncryptablePropertyPlaceholderConfigurer&amp;quot;&amp;gt;
+    &amp;lt;constructor-arg ref=&amp;quot;configurationEncryptor&amp;quot; /&amp;gt;
+    &amp;lt;property name=&amp;quot;locations&amp;quot;&amp;gt;
+        &amp;lt;list&amp;gt;
+            &amp;lt;value&amp;gt;classpath:web.properties&amp;lt;/value&amp;gt;
+        &amp;lt;/list&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/bean&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;在 Spring Properties 設定中的 class 需要依照版本設定不同設定檔，&lt;br&gt;
+而本文是使用 Spring 4.0，所以使用 org.jasypt.spring4.properties.EncryptablePropertyPlaceholderConfigurer，&lt;br&gt;
+若為 Spring 3.1，則使用 org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer，&lt;br&gt;
+其他版本設定於網站中確認：&lt;a class=&#34;link&#34; href=&#34;http://www.jasypt.org/spring31.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;網站&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最後將 properties 檔案裡面需要加密的部分使用 &lt;code&gt;ENC(&amp;lt;已加密的密碼&amp;gt;)&lt;/code&gt; 包起來，就大功告成啦！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;web.user         = webuser
+web.password     = ENC(31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj)
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;key-設定在環境變數&#34;&gt;Key 設定在環境變數&lt;/h4&gt;
+&lt;p&gt;若將 Key 直接設定在 xml 裡，這樣假若系統程式被駭，Key 會直接也被取得的話根本功虧一簣，
+這邊講解在配置中使用 passwordEnvName 來把 Key 設定在環境變數，伺服器應該怎麼做設定。&lt;/p&gt;
+&lt;p&gt;設定環境變數其實不難，假若是設定 passwordEnvName = WEB_PASSWORD，環境變數設定為 WEB_PASSWORD，
+那只要在 &lt;code&gt;/&amp;lt;tomcat&amp;gt;/bin/setenv.sh&lt;/code&gt; 檔案中新增一行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export WEB_PASSWORD=CAT
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可能會覺得這樣不是只是換個地方放嗎，若伺服器檔案都被竊取了，這個環境變數也是會被知道的？ 對的&lt;/p&gt;
+&lt;p&gt;但是​讀取環境變數僅會在伺服器啟動時讀取一次，所以可以啟動伺服器後將檔案移除，&lt;br&gt;
+下次要再重啟時再將檔案放置回去，重啟完再移除檔案，&lt;br&gt;
+雖然動作會叫繁瑣，但可以確保密碼不被竊取。&lt;/p&gt;
+&lt;h2 id=&#34;常見問題&#34;&gt;常見問題&lt;/h2&gt;
+&lt;h3 id=&#34;加密時發生-javalangexceptionininitializererror&#34;&gt;加密時發生 java.lang.ExceptionInInitializerError&lt;/h3&gt;
+&lt;p&gt;執行 encrypt.sh 時若發生 java.lang.ExceptionInInitializerError，原因可能為 JDK 版本過新，可參考此&lt;a class=&#34;link&#34; href=&#34;https://github.com/jasypt/jasypt/issues/58&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;回答&lt;/a&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sh ./encrypt.sh input=password123 password=CAT
+
+----ENVIRONMENT-----------------
+
+Runtime: Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.281-b09
+
+----ARGUMENTS-------------------
+
+input: password123
+password: CAT
+
+----ERROR-----------------------
+
+java.lang.ExceptionInInitializerError
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;​此時可確認一下本機是否有舊版 JDK 使用，使用以下指令查看，若沒有可去下載 JKD 8 261 版本(或更舊)。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ /usr/libexec/java_home -V
+Matching Java Virtual Machines (3):
+    1.8.281.09 (x86_64) &amp;quot;Oracle Corporation&amp;quot; - &amp;quot;Java&amp;quot; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
+    1.8.0_172-zulu-8.30.0.1 (x86_64) &amp;quot;Azul Systems, Inc.&amp;quot; - &amp;quot;Zulu 8&amp;quot; /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由上清單確認後，我有一個舊版本的 &lt;code&gt;1.8.0_172-zulu-8.30.0.1&lt;/code&gt; 可使用，若想固定本機的 JAVA 版本可以設定在 ~/.bash_profile 裡面，但若只是執行此程式時需要使用此版本，可以在指令前方新增指定 JAVA 版本的設定。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_172-zulu-8.30.0.1` sh ./encrypt.sh input=password123 password=CAT
+
+----ENVIRONMENT-----------------
+
+Runtime: Azul Systems, Inc. OpenJDK 64-Bit Server VM 25.172-b01
+
+----ARGUMENTS-------------------
+
+input: password123
+password: CAT
+
+----OUTPUT----------------------
+
+U9zgvbxBMVbmn/JVKpIGbqHlnjIFglRJ
+&lt;/code&gt;&lt;/pre&gt;</description>
+        </item>
+        <item>
         <title>Hugo 紀錄</title>
         <link>https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/</link>
         <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
         
         <guid>https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/</guid>
-        <description>&lt;p&gt;值得紀念的第一篇文章，所以紀錄一下方法&lt;/p&gt;
+        <description>&lt;img src="https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/pexels-anel-rossouw-2558605.jpg" alt="Featured image of post Hugo 紀錄" /&gt;&lt;p&gt;值得紀念的第一篇文章，所以紀錄一下方法&lt;/p&gt;
 &lt;h3 id=&#34;本機安裝-hugo&#34;&gt;本機安裝 Hugo&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;$ brew install hugo
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;選擇主題&#34;&gt;選擇主題&lt;/h3&gt;
