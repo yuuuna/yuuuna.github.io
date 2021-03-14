@@ -1,5 +1,5 @@
-baseurl: https://example.com
-languageCode: en-us
+baseurl: https://yuuna.dev
+languageCode: zh-TW #en-us
 theme: hugo-theme-stack
 paginate: 5
 title: Yuuna Place
@@ -34,11 +34,11 @@ params:
         lastUpdated: 2006-01-02 15:04 MST
 
     sidebar:
-        emoji: 🍥
+        emoji: 
         subtitle: 
-        avatar:
+        avatar: 
             local: true
-            src: img/avatar.png
+            src: img/michael-rivera-N7OocKwsJ0s-unsplash.jpeg
 
     article:
         math: false

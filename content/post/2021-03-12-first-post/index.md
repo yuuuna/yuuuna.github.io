@@ -3,6 +3,7 @@ author: Yuuna Chang
 title: Hugo 紀錄
 date: 2021-03-12
 description: 值得紀念的第一篇文章，所以紀錄一下 Hugo 建置過程
+image: pexels-anel-rossouw-2558605.jpg
 categories:
     - 紀錄
     - Hugo
@@ -49,3 +50,12 @@ $ hugo serve
 ```
 $ hugo new post/<folder-name>/index.md
 ```
+
+### 部署設定
+
+若有要部署至 Github，須將 `config.yaml` 的 `baseurl` 調整為自己的網址
+
+```
+baseurl: https://yuuuna.github.io
+```
+
