@@ -2,17 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Yuuna Place</title>
-    <link>https://yuuuna.github.io/post/</link>
+    <link>https://yuuna.dev/post/</link>
     <description>Recent content in Posts on Yuuna Place</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuuna.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sprint Framework 使用 jasypt 加密 config 檔案</title>
+      <link>https://yuuna.dev/p/sprint-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://yuuna.dev/p/sprint-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
+      <description>實作介紹 引用 jasypt 套件 於 pom.xml 新增套件，
+套件版本的選擇若為 Sprint 3.0 或 3.1 使用 jasypt-spring31 版本，
+若為 Sprint 4.0 使用 jasypt-spring4 版本，本文以使用 4.0 版本。
+其他版本可於網站中尋找：網站
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.jasypt&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jasypt&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.jasypt&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jasypt-spring4&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; </description>
+    </item>
+    
     <item>
       <title>Hugo 紀錄</title>
-      <link>https://yuuuna.github.io/p/hugo-%E7%B4%80%E9%8C%84/</link>
+      <link>https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/</link>
       <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuuna.github.io/p/hugo-%E7%B4%80%E9%8C%84/</guid>
+      <guid>https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/</guid>
       <description>值得紀念的第一篇文章，所以紀錄一下方法
 本機安裝 Hugo $ brew install hugo 選擇主題 於 Theme 挑選一個自己喜歡的主題，記得注意 License 。
 建置專案 $ hugo new site &amp;lt;site-name&amp;gt; 主題有提供教學 然後可以依照選擇主題裡的教學方式繼續完成建置(如果他有提供教學的話)。
