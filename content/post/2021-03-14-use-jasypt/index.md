@@ -33,19 +33,19 @@ tags:
 
 ​使用 `bin/listAlgorithms.sh` 查看可使用的演算法清單。
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ sh ./listAlgorithms.sh  
    
 DIGEST ALGORITHMS:  [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256]  
    
 PBE ALGORITHMS:   [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]  
-```
+{{< / highlight >}}
 
 #### 加密
 
 使用 `bin/encrypt.sh` 來進行加密，執行此檔案可看到應填入的欄位有哪些。
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ sh ./encrypt.sh
 
 USAGE: encrypt.sh [ARGUMENTS]
@@ -69,7 +69,7 @@ USAGE: encrypt.sh [ARGUMENTS]
       providerClassName
       stringOutputType
       ivGeneratorClassName
-```
+{{< / highlight >}}
 
 ​可觀察到必要填入有 `input` 與 `password` 兩個欄位。
 
@@ -79,7 +79,7 @@ USAGE: encrypt.sh [ARGUMENTS]
 
 那現在以 input 為 password123，password 為 CAT，而演算法選擇 PBEWithMD5AndDES 來進行加密。
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ sh ./encrypt.sh input=password123 password=CAT algorithm=PBEWithMD5AndDES
 
 ----ENVIRONMENT-----------------
@@ -95,7 +95,7 @@ password: CAT
 ----OUTPUT----------------------
 
 31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj
-```
+{{< / highlight >}}
 
 這樣就完成了加密，而加密過後的密碼為 `31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj`，網站中就可以使用這組已加密的密碼。
 
@@ -103,7 +103,7 @@ password: CAT
 
 可使用 `bin/decrypt.sh` 進行解密，執行此檔案可看到應填入的欄位有哪些，基本上與加密相同。
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ sh ./decrypt.sh
 
 USAGE: decrypt.sh [ARGUMENTS]
@@ -127,12 +127,12 @@ USAGE: decrypt.sh [ARGUMENTS]
       providerClassName
       stringOutputType
       ivGeneratorClassName
-```
+{{< / highlight >}}
 
 那現在將剛剛加密過後的密碼進行解密，input 為 31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj，password 為 CAT，演算法為 PBEWithMD5AndDES。
 
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ sh ./decrypt.sh input=31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj password=CAT algorithm=PBEWithMD5AndDES
 
 ----ENVIRONMENT-----------------
@@ -148,7 +148,7 @@ password: CAT
 ----OUTPUT----------------------
 
 password123
-```
+{{< / highlight >}}
 
 ​輸出結果得到 password123，成功進行解密。
 
@@ -161,7 +161,7 @@ password123
 若為 Sprint 4.0 使用 `jasypt-spring4` 版本，本文以使用 4.0 版本。  
 其他版本可於網站中尋找：[網站](http://www.jasypt.org/spring31.html)
 
-```
+{{< highlight xml >}}
 <dependency>
     <groupId>org.jasypt</groupId>
     <artifactId>jasypt</artifactId>
@@ -172,7 +172,7 @@ password123
     <artifactId>jasypt-spring4</artifactId>
     <version>1.9.3</version>
 </dependency>
-```
+{{< / highlight >}}
 
 ### 調整 Spring 配置
 
@@ -182,7 +182,7 @@ password123
 第一種是直接寫在設定檔案裡，name 設定 password，value 給予 Key，  
 第二種是設定在 Server 的環境變數裡，name 設定 passwordEnvName，value 給予環境變數名稱。
 
-```
+{{< highlight xml >}}
 <!-- 設定環境變數 -->
 <bean id="environmentVariablesConfiguration" class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
     <property name="algorithm" value="PBEWithMD5AndDES" />
@@ -207,7 +207,7 @@ password123
         </list>
     </property>
 </bean>
-```
+{{< / highlight >}}
 
 > 在 Spring Properties 設定中的 class 需要依照版本設定不同設定檔，  
 > 而本文是使用 Spring 4.0，所以使用 org.jasypt.spring4.properties.EncryptablePropertyPlaceholderConfigurer，  
@@ -216,10 +216,10 @@ password123
 
 最後將 properties 檔案裡面需要加密的部分使用 `ENC(<已加密的密碼>)` 包起來，就大功告成啦！
 
-```
+{{< highlight xml >}}
 web.user         = webuser
 web.password     = ENC(31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj)
-```
+{{< / highlight >}}
 
 #### Key 設定在環境變數
 
@@ -229,9 +229,9 @@ web.password     = ENC(31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj)
 設定環境變數其實不難，假若是設定 passwordEnvName = WEB_PASSWORD，環境變數設定為 WEB_PASSWORD，
 那只要在 `/<tomcat>/bin/setenv.sh` 檔案中新增一行：
 
-```
+{{< highlight shell "lineNos=false" >}}
 export WEB_PASSWORD=CAT
-```
+{{< / highlight >}}
 
 可能會覺得這樣不是只是換個地方放嗎，若伺服器檔案都被竊取了，這個環境變數也是會被知道的？ 對的
 
@@ -245,7 +245,7 @@ export WEB_PASSWORD=CAT
 
 執行 encrypt.sh 時若發生 java.lang.ExceptionInInitializerError，原因可能為 JDK 版本過新，可參考此[回答](https://github.com/jasypt/jasypt/issues/58)。
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ sh ./encrypt.sh input=password123 password=CAT
 
 ----ENVIRONMENT-----------------
@@ -260,22 +260,22 @@ password: CAT
 ----ERROR-----------------------
 
 java.lang.ExceptionInInitializerError
-```
+{{< / highlight >}}
 
 ​此時可確認一下本機是否有舊版 JDK 使用，使用以下指令查看，若沒有可去下載 JKD 8 261 版本(或更舊)。
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ /usr/libexec/java_home -V
 Matching Java Virtual Machines (3):
     1.8.281.09 (x86_64) "Oracle Corporation" - "Java" /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
     1.8.0_172-zulu-8.30.0.1 (x86_64) "Azul Systems, Inc." - "Zulu 8" /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
 /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
-```
+{{< / highlight >}}
 
 由上清單確認後，我有一個舊版本的 `1.8.0_172-zulu-8.30.0.1` 可使用，若想固定本機的 JAVA 版本可以設定在 ~/.bash_profile 裡面，但若只是執行此程式時需要使用此版本，可以在指令前方新增指定 JAVA 版本的設定。
 
 
-```
+{{< highlight shell "lineNos=false" >}}
 $ JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_172-zulu-8.30.0.1` sh ./encrypt.sh input=password123 password=CAT
 
 ----ENVIRONMENT-----------------
@@ -290,6 +290,6 @@ password: CAT
 ----OUTPUT----------------------
 
 U9zgvbxBMVbmn/JVKpIGbqHlnjIFglRJ
-```
+{{< / highlight >}}
 
 
