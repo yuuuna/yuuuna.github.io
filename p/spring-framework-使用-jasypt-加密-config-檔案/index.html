@@ -2,25 +2,25 @@
 <html lang="zh-TW">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Jasypt 介紹 Jasypt 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。
-特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 先於網站中下載 Jasypt 檔案：Download
+特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 要使用 Jasypt CLI Tools 需先於網站中下載檔案：Download
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
-$ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40] 加密 使用 bin/encrypt.sh 來進行加密，執行此檔案可看到應填入的欄位有哪些。'><title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
+1 2 3 4 5  $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]    加密 使用 bin/encrypt.'><title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
 
 <link rel='canonical' href='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Spring Framework 使用 Jasypt 加密 config 檔案'>
 <meta property='og:description' content='Jasypt 介紹 Jasypt 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。
-特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 先於網站中下載 Jasypt 檔案：Download
+特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 要使用 Jasypt CLI Tools 需先於網站中下載檔案：Download
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
-$ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40] 加密 使用 bin/encrypt.sh 來進行加密，執行此檔案可看到應填入的欄位有哪些。'>
+1 2 3 4 5  $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]    加密 使用 bin/encrypt.'>
 <meta property='og:url' content='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/'>
 <meta property='og:site_name' content='Yuuna Place'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Spring-Framework' /><meta property='article:tag' content='JAVA' /><meta property='article:tag' content='加密' /><meta property='article:published_time' content='2021-03-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-03-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/kitty-cat-helps-at-work.jpeg' />
 <meta name="twitter:site" content="YuuunaChang"><meta name="twitter:title" content="Spring Framework 使用 Jasypt 加密 config 檔案">
 <meta name="twitter:description" content="Jasypt 介紹 Jasypt 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。
-特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 先於網站中下載 Jasypt 檔案：Download
+特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 要使用 Jasypt CLI Tools 需先於網站中下載檔案：Download
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
-$ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40] 加密 使用 bin/encrypt.sh 來進行加密，執行此檔案可看到應填入的欄位有哪些。"><meta name="twitter:card" content="summary_large_image">
+1 2 3 4 5  $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]    加密 使用 bin/encrypt."><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/kitty-cat-helps-at-work.jpeg' />
     </head>
     <body class="">
@@ -232,24 +232,62 @@ $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SH
     >更多其他特點&hellip;</a></li>
 </ul>
 <h3 id="使用-jasypt-cli-tools-加解密資料">使用 Jasypt CLI Tools 加解密資料</h3>
-<p>先於網站中下載 Jasypt 檔案：<a class="link" href="http://www.jasypt.org/download.html"  target="_blank" rel="noopener"
+<p>要使用 Jasypt CLI Tools 需先於網站中下載檔案：<a class="link" href="http://www.jasypt.org/download.html"  target="_blank" rel="noopener"
     >Download</a></p>
 <h4 id="演算法的選擇">演算法的選擇</h4>
 <p>​使用 <code>bin/listAlgorithms.sh</code> 查看可使用的演算法清單。</p>
-<pre><code>$ sh ./listAlgorithms.sh  
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sh ./listAlgorithms.sh  
    
-DIGEST ALGORITHMS:  [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256]  
+DIGEST ALGORITHMS:  <span style="color:#f92672">[</span>MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256<span style="color:#f92672">]</span>  
    
-PBE ALGORITHMS:   [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]  
-</code></pre><h4 id="加密">加密</h4>
+PBE ALGORITHMS:   <span style="color:#f92672">[</span>PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40<span style="color:#f92672">]</span>  </code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="加密">加密</h4>
 <p>使用 <code>bin/encrypt.sh</code> 來進行加密，執行此檔案可看到應填入的欄位有哪些。</p>
-<pre><code>$ sh ./encrypt.sh
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sh ./encrypt.sh
 
-USAGE: encrypt.sh [ARGUMENTS]
+USAGE: encrypt.sh <span style="color:#f92672">[</span>ARGUMENTS<span style="color:#f92672">]</span>
 
   * Arguments must apply to format:
 
-      &quot;arg1=value1 arg2=value2 arg3=value3 ...&quot;
+      <span style="color:#e6db74">&#34;arg1=value1 arg2=value2 arg3=value3 ...&#34;</span>
 
   * Required arguments:
 
@@ -265,15 +303,36 @@ USAGE: encrypt.sh [ARGUMENTS]
       providerName
       providerClassName
       stringOutputType
-      ivGeneratorClassName
-</code></pre><p>​可觀察到必要填入有 <code>input</code> 與 <code>password</code> 兩個欄位。</p>
+      ivGeneratorClassName</code></pre></td></tr></table>
+</div>
+</div>
+<p>​可觀察到必要填入有 <code>input</code> 與 <code>password</code> 兩個欄位。</p>
 <ul>
 <li><code>input</code> 為要加密的文字。</li>
 <li><code>password</code> 為加解密使用的 Key。</li>
 <li>​​​​[可選] <code>algorithm</code> 為使用哪種演算法來加密。</li>
 </ul>
 <p>那現在以 input 為 password123，password 為 CAT，而演算法選擇 PBEWithMD5AndDES 來進行加密。</p>
-<pre><code>$ sh ./encrypt.sh input=password123 password=CAT algorithm=PBEWithMD5AndDES
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sh ./encrypt.sh input<span style="color:#f92672">=</span>password123 password<span style="color:#f92672">=</span>CAT algorithm<span style="color:#f92672">=</span>PBEWithMD5AndDES
 
 ----ENVIRONMENT-----------------
 
@@ -287,17 +346,46 @@ password: CAT
 
 ----OUTPUT----------------------
 
-31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj
-</code></pre><p>這樣就完成了加密，而加密過後的密碼為 <code>31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj</code>，網站中就可以使用這組已加密的密碼。</p>
+31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj</code></pre></td></tr></table>
+</div>
+</div>
+<p>這樣就完成了加密，而加密過後的密碼為 <code>31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj</code>，網站中就可以使用這組已加密的密碼。</p>
 <h4 id="解密">解密</h4>
 <p>可使用 <code>bin/decrypt.sh</code> 進行解密，執行此檔案可看到應填入的欄位有哪些，基本上與加密相同。</p>
-<pre><code>$ sh ./decrypt.sh
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sh ./decrypt.sh
 
-USAGE: decrypt.sh [ARGUMENTS]
+USAGE: decrypt.sh <span style="color:#f92672">[</span>ARGUMENTS<span style="color:#f92672">]</span>
 
   * Arguments must apply to format:
 
-      &quot;arg1=value1 arg2=value2 arg3=value3 ...&quot;
+      <span style="color:#e6db74">&#34;arg1=value1 arg2=value2 arg3=value3 ...&#34;</span>
 
   * Required arguments:
 
@@ -313,9 +401,30 @@ USAGE: decrypt.sh [ARGUMENTS]
       providerName
       providerClassName
       stringOutputType
-      ivGeneratorClassName
-</code></pre><p>那現在將剛剛加密過後的密碼進行解密，input 為 31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj，password 為 CAT，演算法為 PBEWithMD5AndDES。</p>
-<pre><code>$ sh ./decrypt.sh input=31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj password=CAT algorithm=PBEWithMD5AndDES
+      ivGeneratorClassName</code></pre></td></tr></table>
+</div>
+</div>
+<p>那現在將剛剛加密過後的密碼進行解密，input 為 31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj，password 為 CAT，演算法為 PBEWithMD5AndDES。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sh ./decrypt.sh input<span style="color:#f92672">=</span>31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj password<span style="color:#f92672">=</span>CAT algorithm<span style="color:#f92672">=</span>PBEWithMD5AndDES
 
 ----ENVIRONMENT-----------------
 
@@ -329,8 +438,10 @@ password: CAT
 
 ----OUTPUT----------------------
 
-password123
-</code></pre><p>​輸出結果得到 password123，成功進行解密。</p>
+password123</code></pre></td></tr></table>
+</div>
+</div>
+<p>​輸出結果得到 password123，成功進行解密。</p>
 <h2 id="spring-framework-使用-jasypt-套件">Spring Framework 使用 Jasypt 套件</h2>
 <h3 id="匯入-jasypt-套件">匯入 Jasypt 套件</h3>
 <p>於 <code>pom.xml</code> 新增套件，<br>
@@ -338,46 +449,92 @@ password123
 若為 Sprint 4.0 使用 <code>jasypt-spring4</code> 版本，本文以使用 4.0 版本。<br>
 其他版本可於網站中尋找：<a class="link" href="http://www.jasypt.org/spring31.html"  target="_blank" rel="noopener"
     >網站</a></p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.jasypt&lt;/groupId&gt;
-    &lt;artifactId&gt;jasypt&lt;/artifactId&gt;
-    &lt;version&gt;1.9.3&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.jasypt&lt;/groupId&gt;
-    &lt;artifactId&gt;jasypt-spring4&lt;/artifactId&gt;
-    &lt;version&gt;1.9.3&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre><h3 id="調整-spring-配置">調整 Spring 配置</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>org.jasypt<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>jasypt<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>1.9.3<span style="color:#f92672">&lt;/version&gt;</span>
+<span style="color:#f92672">&lt;/dependency&gt;</span>
+<span style="color:#f92672">&lt;dependency&gt;</span>
+    <span style="color:#f92672">&lt;groupId&gt;</span>org.jasypt<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId&gt;</span>jasypt-spring4<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version&gt;</span>1.9.3<span style="color:#f92672">&lt;/version&gt;</span>
+<span style="color:#f92672">&lt;/dependency&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="調整-spring-配置">調整 Spring 配置</h3>
 <p>設定環境變數與套件相關配置。</p>
 <p>這邊設定 Key 的方法有兩種，<br>
 第一種是直接寫在設定檔案裡，name 設定 password，value 給予 Key，<br>
 第二種是設定在 Server 的環境變數裡，name 設定 passwordEnvName，value 給予環境變數名稱。</p>
-<pre><code>&lt;!-- 設定環境變數 --&gt;
-&lt;bean id=&quot;environmentVariablesConfiguration&quot; class=&quot;org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig&quot;&gt;
-    &lt;property name=&quot;algorithm&quot; value=&quot;PBEWithMD5AndDES&quot; /&gt;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!-- 設定環境變數 --&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;environmentVariablesConfiguration&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;algorithm&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;PBEWithMD5AndDES&#34;</span> <span style="color:#f92672">/&gt;</span>
     
-    &lt;!-- 方法一：將 key 直接設定在這裡 --&gt;
-    &lt;property name=&quot;password&quot; value=&quot;CAT&quot; /&gt;
-    &lt;!-- 方法二：將 key 設定在 Server 的環境變數 --&gt;
-    &lt;property name=&quot;passwordEnvName&quot; value=&quot;WEB_PASSWORD&quot; /&gt;
-&lt;/bean&gt;
+    <span style="color:#75715e">&lt;!-- 方法一：將 key 直接設定在這裡 --&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;CAT&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#75715e">&lt;!-- 方法二：將 key 設定在 Server 的環境變數 --&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;passwordEnvName&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;WEB_PASSWORD&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span>
 
-&lt;!-- 解密配置值設定 --&gt;
-&lt;bean id=&quot;configurationEncryptor&quot; class=&quot;org.jasypt.encryption.pbe.StandardPBEStringEncryptor&quot;&gt;
-    &lt;property name=&quot;config&quot; ref=&quot;environmentVariablesConfiguration&quot; /&gt;
-&lt;/bean&gt;
+<span style="color:#75715e">&lt;!-- 解密配置值設定 --&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;configurationEncryptor&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.jasypt.encryption.pbe.StandardPBEStringEncryptor&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;config&#34;</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;environmentVariablesConfiguration&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span>
 
-&lt;!-- Spring Properties 設定 --&gt;
-&lt;bean class=&quot;org.jasypt.spring4.properties.EncryptablePropertyPlaceholderConfigurer&quot;&gt;
-    &lt;constructor-arg ref=&quot;configurationEncryptor&quot; /&gt;
-    &lt;property name=&quot;locations&quot;&gt;
-        &lt;list&gt;
-            &lt;value&gt;classpath:web.properties&lt;/value&gt;
-        &lt;/list&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><blockquote>
+<span style="color:#75715e">&lt;!-- Spring Properties 設定 --&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;org.jasypt.spring4.properties.EncryptablePropertyPlaceholderConfigurer&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;constructor-arg</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;configurationEncryptor&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;locations&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;list&gt;</span>
+            <span style="color:#f92672">&lt;value&gt;</span>classpath:web.properties<span style="color:#f92672">&lt;/value&gt;</span>
+        <span style="color:#f92672">&lt;/list&gt;</span>
+    <span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote>
 <p>在 Spring Properties 設定中的 class 需要依照版本設定不同設定檔，<br>
 而本文是使用 Spring 4.0，所以使用 org.jasypt.spring4.properties.EncryptablePropertyPlaceholderConfigurer，<br>
 若為 Spring 3.1，則使用 org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer，<br>
@@ -385,27 +542,60 @@ password123
     >網站</a></p>
 </blockquote>
 <p>最後將 properties 檔案裡面需要加密的部分使用 <code>ENC(&lt;已加密的密碼&gt;)</code> 包起來，就大功告成啦！</p>
-<pre><code>web.user         = webuser
-web.password     = ENC(31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj)
-</code></pre><h4 id="key-設定在環境變數">Key 設定在環境變數</h4>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">web.user         = webuser
+web.password     = ENC(31wLpRHWtqh0XQOSLgLBLo2Rt2wDz4zj)</code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="key-設定在環境變數">Key 設定在環境變數</h4>
 <p>若將 Key 直接設定在 xml 裡，這樣假若系統程式被駭，Key 會直接也被取得的話根本功虧一簣，
 這邊講解在配置中使用 passwordEnvName 來把 Key 設定在環境變數，伺服器應該怎麼做設定。</p>
 <p>設定環境變數其實不難，假若是設定 passwordEnvName = WEB_PASSWORD，環境變數設定為 WEB_PASSWORD，
 那只要在 <code>/&lt;tomcat&gt;/bin/setenv.sh</code> 檔案中新增一行：</p>
-<pre><code>export WEB_PASSWORD=CAT
-</code></pre><p>可能會覺得這樣不是只是換個地方放嗎，若伺服器檔案都被竊取了，這個環境變數也是會被知道的？ 對的</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export WEB_PASSWORD<span style="color:#f92672">=</span>CAT</code></pre></td></tr></table>
+</div>
+</div>
+<p>可能會覺得這樣不是只是換個地方放嗎，若伺服器檔案都被竊取了，這個環境變數也是會被知道的？ 對的</p>
 <p>但是​讀取環境變數僅會在伺服器啟動時讀取一次，所以可以啟動伺服器後將檔案移除，<br>
 下次要再重啟時再將檔案放置回去，重啟完再移除檔案，<br>
-雖然動作會叫繁瑣，但可以確保密碼不被竊取。</p>
+雖然動作會較繁瑣，但可以確保密碼不被竊取。</p>
 <h2 id="常見問題">常見問題</h2>
 <h3 id="加密時發生-javalangexceptionininitializererror">加密時發生 java.lang.ExceptionInInitializerError</h3>
 <p>執行 encrypt.sh 時若發生 java.lang.ExceptionInInitializerError，原因可能為 JDK 版本過新，可參考此<a class="link" href="https://github.com/jasypt/jasypt/issues/58"  target="_blank" rel="noopener"
     >回答</a>。</p>
-<pre><code>$ sh ./encrypt.sh input=password123 password=CAT
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sh ./encrypt.sh input<span style="color:#f92672">=</span>password123 password<span style="color:#f92672">=</span>CAT
 
 ----ENVIRONMENT-----------------
 
-Runtime: Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.281-b09
+Runtime: Oracle Corporation Java HotSpot<span style="color:#f92672">(</span>TM<span style="color:#f92672">)</span> 64-Bit Server VM 25.281-b09
 
 ----ARGUMENTS-------------------
 
@@ -414,15 +604,46 @@ password: CAT
 
 ----ERROR-----------------------
 
-java.lang.ExceptionInInitializerError
-</code></pre><p>​此時可確認一下本機是否有舊版 JDK 使用，使用以下指令查看，若沒有可去下載 JKD 8 261 版本(或更舊)。</p>
-<pre><code>$ /usr/libexec/java_home -V
-Matching Java Virtual Machines (3):
-    1.8.281.09 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java&quot; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
-    1.8.0_172-zulu-8.30.0.1 (x86_64) &quot;Azul Systems, Inc.&quot; - &quot;Zulu 8&quot; /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
-/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
-</code></pre><p>由上清單確認後，我有一個舊版本的 <code>1.8.0_172-zulu-8.30.0.1</code> 可使用，若想固定本機的 JAVA 版本可以設定在 ~/.bash_profile 裡面，但若只是執行此程式時需要使用此版本，可以在指令前方新增指定 JAVA 版本的設定。</p>
-<pre><code>$ JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_172-zulu-8.30.0.1` sh ./encrypt.sh input=password123 password=CAT
+java.lang.ExceptionInInitializerError</code></pre></td></tr></table>
+</div>
+</div>
+<p>​此時可確認一下本機是否有舊版 JDK 使用，使用以下指令查看，若沒有可去下載 JKD 8 261 版本(或更舊)。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ /usr/libexec/java_home -V
+Matching Java Virtual Machines <span style="color:#f92672">(</span>3<span style="color:#f92672">)</span>:
+    1.8.281.09 <span style="color:#f92672">(</span>x86_64<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;Oracle Corporation&#34;</span> - <span style="color:#e6db74">&#34;Java&#34;</span> /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
+    1.8.0_172-zulu-8.30.0.1 <span style="color:#f92672">(</span>x86_64<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;Azul Systems, Inc.&#34;</span> - <span style="color:#e6db74">&#34;Zulu 8&#34;</span> /Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</code></pre></td></tr></table>
+</div>
+</div>
+<p>由上清單確認後，我有一個舊版本的 <code>1.8.0_172-zulu-8.30.0.1</code> 可使用，若想固定本機的 JAVA 版本可以設定在 ~/.bash_profile 裡面，但若只是執行此程式時需要使用此版本，可以在指令前方新增指定 JAVA 版本的設定。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ JAVA_HOME<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>/usr/libexec/java_home -v 1.8.0_172-zulu-8.30.0.1<span style="color:#e6db74">`</span> sh ./encrypt.sh input<span style="color:#f92672">=</span>password123 password<span style="color:#f92672">=</span>CAT
 
 ----ENVIRONMENT-----------------
 
@@ -435,8 +656,10 @@ password: CAT
 
 ----OUTPUT----------------------
 
-U9zgvbxBMVbmn/JVKpIGbqHlnjIFglRJ
-</code></pre>
+U9zgvbxBMVbmn/JVKpIGbqHlnjIFglRJ</code></pre></td></tr></table>
+</div>
+</div>
+
 </section>
 
 
