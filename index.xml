@@ -12,7 +12,7 @@
         <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
         
         <guid>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
-        <description>&lt;img src="https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/kitty-cat-helps-at-work.jpeg" alt="Featured image of post Spring Framework 使用 Jasypt 加密 config 檔案" /&gt;&lt;h2 id=&#34;jasypt-介紹&#34;&gt;Jasypt 介紹&lt;/h2&gt;
+        <description>&lt;img src="https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/image.jpeg" alt="Featured image of post Spring Framework 使用 Jasypt 加密 config 檔案" /&gt;&lt;h2 id=&#34;jasypt-介紹&#34;&gt;Jasypt 介紹&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.jasypt.org/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Jasypt&lt;/a&gt; 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。&lt;/p&gt;
 &lt;h3 id=&#34;特點&#34;&gt;特點&lt;/h3&gt;
@@ -291,7 +291,7 @@ U9zgvbxBMVbmn/JVKpIGbqHlnjIFglRJ&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
         
         <guid>https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/</guid>
-        <description>&lt;img src="https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/pexels-anel-rossouw-2558605.jpg" alt="Featured image of post Hugo 紀錄" /&gt;&lt;p&gt;值得紀念的第一篇文章，所以紀錄一下方法&lt;/p&gt;
+        <description>&lt;img src="https://yuuna.dev/p/hugo-%E7%B4%80%E9%8C%84/image.jpg" alt="Featured image of post Hugo 紀錄" /&gt;&lt;p&gt;值得紀念的第一篇文章，所以紀錄一下方法&lt;/p&gt;
 &lt;h3 id=&#34;本機安裝-hugo&#34;&gt;本機安裝 Hugo&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;$ brew install hugo
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;選擇主題&#34;&gt;選擇主題&lt;/h3&gt;
