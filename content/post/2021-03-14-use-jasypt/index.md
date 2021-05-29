@@ -3,7 +3,7 @@ author: Yuuna Chang
 title: "Spring Framework 使用 Jasypt 加密 config 檔案"
 date: 2021-03-14
 draft: false
-image: kitty-cat-helps-at-work.jpeg
+image: image.jpeg
 categories:
     - 加密
     - Spring-Framework

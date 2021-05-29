@@ -3,7 +3,7 @@ author: Yuuna Chang
 title: Hugo 紀錄
 date: 2021-03-12
 description: 值得紀念的第一篇文章，所以紀錄一下 Hugo 建置過程
-image: pexels-anel-rossouw-2558605.jpg
+image: image.jpg
 categories:
     - 紀錄
     - Hugo
