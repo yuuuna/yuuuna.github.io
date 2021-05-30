@@ -2,44 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Yuuna Place</title>
-    <link>https://yuuna.dev/categories/</link>
+    <link>https://blog.yuuna.dev/categories/</link>
     <description>Recent content in Categories on Yuuna Place</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Spring-Framework</title>
-      <link>https://yuuna.dev/categories/spring-framework/</link>
+      <link>https://blog.yuuna.dev/categories/spring-framework/</link>
       <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuna.dev/categories/spring-framework/</guid>
+      <guid>https://blog.yuuna.dev/categories/spring-framework/</guid>
       <description></description>
     </item>
     
     <item>
       <title>加密</title>
-      <link>https://yuuna.dev/categories/%E5%8A%A0%E5%AF%86/</link>
+      <link>https://blog.yuuna.dev/categories/%E5%8A%A0%E5%AF%86/</link>
       <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuna.dev/categories/%E5%8A%A0%E5%AF%86/</guid>
+      <guid>https://blog.yuuna.dev/categories/%E5%8A%A0%E5%AF%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://yuuna.dev/categories/hugo/</link>
+      <link>https://blog.yuuna.dev/categories/hugo/</link>
       <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuna.dev/categories/hugo/</guid>
+      <guid>https://blog.yuuna.dev/categories/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>紀錄</title>
-      <link>https://yuuna.dev/categories/%E7%B4%80%E9%8C%84/</link>
+      <link>https://blog.yuuna.dev/categories/%E7%B4%80%E9%8C%84/</link>
       <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuna.dev/categories/%E7%B4%80%E9%8C%84/</guid>
+      <guid>https://blog.yuuna.dev/categories/%E7%B4%80%E9%8C%84/</guid>
       <description></description>
     </item>
     

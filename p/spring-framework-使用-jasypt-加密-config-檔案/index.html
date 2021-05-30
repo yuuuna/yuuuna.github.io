@@ -6,22 +6,22 @@
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
 $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]  加密 使用 bin/encrypt.'><title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
 
-<link rel='canonical' href='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/'>
+<link rel='canonical' href='https://blog.yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Spring Framework 使用 Jasypt 加密 config 檔案'>
 <meta property='og:description' content='Jasypt 介紹 Jasypt 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。
 特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 要使用 Jasypt CLI Tools 需先於網站中下載檔案：Download
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
 $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]  加密 使用 bin/encrypt.'>
-<meta property='og:url' content='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/'>
+<meta property='og:url' content='https://blog.yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/'>
 <meta property='og:site_name' content='Yuuna Place'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Spring-Framework' /><meta property='article:tag' content='JAVA' /><meta property='article:tag' content='加密' /><meta property='article:published_time' content='2021-03-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-03-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/image.jpeg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Spring-Framework' /><meta property='article:tag' content='JAVA' /><meta property='article:tag' content='加密' /><meta property='article:published_time' content='2021-03-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-03-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://blog.yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/image.jpeg' />
 <meta name="twitter:site" content="YuuunaChang"><meta name="twitter:title" content="Spring Framework 使用 Jasypt 加密 config 檔案">
 <meta name="twitter:description" content="Jasypt 介紹 Jasypt 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。
 特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 要使用 Jasypt CLI Tools 需先於網站中下載檔案：Download
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
 $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] PBE ALGORITHMS: [PBEWITHHMACSHA1ANDAES_128, PBEWITHHMACSHA1ANDAES_256, PBEWITHHMACSHA224ANDAES_128, PBEWITHHMACSHA224ANDAES_256, PBEWITHHMACSHA256ANDAES_128, PBEWITHHMACSHA256ANDAES_256, PBEWITHHMACSHA384ANDAES_128, PBEWITHHMACSHA384ANDAES_256, PBEWITHHMACSHA512ANDAES_128, PBEWITHHMACSHA512ANDAES_256, PBEWITHMD5ANDDES, PBEWITHMD5ANDTRIPLEDES, PBEWITHSHA1ANDDESEDE, PBEWITHSHA1ANDRC2_128, PBEWITHSHA1ANDRC2_40, PBEWITHSHA1ANDRC4_128, PBEWITHSHA1ANDRC4_40]  加密 使用 bin/encrypt."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/image.jpeg' />
+    <meta name="twitter:image" content='https://blog.yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/image.jpeg' />
     </head>
     <body class="">
     <script>
@@ -69,7 +69,7 @@ $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SH
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://yuuna.dev">Yuuna Place</a></h1>
+        <h1 class="site-name"><a href="https://blog.yuuna.dev">Yuuna Place</a></h1>
         <h2 class="site-description"></h2>
     </header>
 
@@ -159,7 +159,7 @@ $ sh ./listAlgorithms.sh DIGEST ALGORITHMS: [MD2, MD5, SHA, SHA-224, SHA-256, SH
 
             <main class="main full-width">
     <div id="article-toolbar">
-        <a href="https://yuuna.dev" class="back-home">
+        <a href="https://blog.yuuna.dev" class="back-home">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <polyline points="15 6 9 12 15 18" />

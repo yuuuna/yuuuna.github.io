@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JAVA on Yuuna Place</title>
-    <link>https://yuuna.dev/tags/java/</link>
+    <link>https://blog.yuuna.dev/tags/java/</link>
     <description>Recent content in JAVA on Yuuna Place</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuna.dev/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
-      <link>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
+      <link>https://blog.yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
       <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
+      <guid>https://blog.yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
       <description>Jasypt 介紹 Jasypt 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。
 特點  單向與雙向加密的安全性，使用標準的加密技術。 提供了 DIGEST 演算法與 PBE(Password-Based Encryption) 演算法，Ex. MD5、SHA、SHA512、PBEWithMD5AndDES&amp;hellip;。 提高使用者密碼的安全性。 於 Spring 簡單使用加解密技術。 更多其他特點&amp;hellip;  使用 Jasypt CLI Tools 加解密資料 要使用 Jasypt CLI Tools 需先於網站中下載檔案：Download
 演算法的選擇 ​使用 bin/listAlgorithms.sh 查看可使用的演算法清單。
