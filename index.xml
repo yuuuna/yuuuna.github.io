@@ -6,7 +6,161 @@
         <description>Recent content on Yuuna Place</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-TW</language>
-        <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[GIT] 跨 Repo 取得 commit 或 MR 資料</title>
+        <link>https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</link>
+        <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</guid>
+        <description>&lt;h2 id=&#34;簡介&#34;&gt;簡介&lt;/h2&gt;
+&lt;p&gt;此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。&lt;/p&gt;
+&lt;h2 id=&#34;command-介紹&#34;&gt;Command 介紹&lt;/h2&gt;
+&lt;p&gt;這邊預設對 Git 有一定的基礎 (clone、pull、push、log&amp;hellip;)，故僅介紹此篇主要使用的相關 Command。&lt;/p&gt;
+&lt;h3 id=&#34;remote&#34;&gt;remote&lt;/h3&gt;
+&lt;p&gt;Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。&lt;/p&gt;
+&lt;p&gt;預設在 &lt;code&gt;git clone&lt;/code&gt; 之後，會有一個預設的 &lt;code&gt;origin&lt;/code&gt; 名稱，這是 git 給的預設名稱。&lt;br&gt;
+可以使用 &lt;code&gt;git remote&lt;/code&gt; 查看目前有設定的 remote。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git clone git@github.com:yuuuna/main-project.git
+Cloning into &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;main-project&amp;#39;&lt;/span&gt;...
+remote: Enumerating objects: 3, &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;.
+remote: Counting objects: 100% &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;3/3&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;.
+remote: Total &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;delta 0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, reused &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;delta 0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, pack-reused &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+Receiving objects: 100% &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;3/3&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;.
+
+$ cd main-project
+
+$ git remote
+origin&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用 &lt;code&gt;git remote -v&lt;/code&gt; 可以查看名稱 + Repository Url。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git remote -v
+origin	git@github.com:yuuuna/main-project.git &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;fetch&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+origin	git@github.com:yuuuna/main-project.git &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;push&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用 &lt;code&gt;git remote add &amp;lt;名稱&amp;gt; &amp;lt;git repo url&amp;gt;&lt;/code&gt; 新增連結的遠端 Repository。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git remote add sub git@github.com:yuuuna/sub-project.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以檢查一下剛剛新增的 remote，確認關聯成功！&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git remote
+origin
+sub
+
+$ git remote -v
+origin	git@github.com:yuuuna/main-project.git &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;fetch&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+origin	git@github.com:yuuuna/main-project.git &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;push&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+sub	git@github.com:yuuuna/sub-project.git &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;fetch&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+sub	git@github.com:yuuuna/sub-project.git &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;push&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;目前設定了一個 &lt;code&gt;sub&lt;/code&gt; 的遠端，但是可以發現目前沒有抓取此 Repo 的任何資訊，使用 &lt;code&gt;git log&lt;/code&gt; 可觀察到目前還不認識 sub 裡面 master 這個分支。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git log sub/master
+fatal: ambiguous argument &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;sub/master&amp;#39;&lt;/span&gt;: unknown revision or path not in the working tree.
+Use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;--&amp;#39;&lt;/span&gt; to separate paths from revisions, like this:
+&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;git &amp;lt;command&amp;gt; [&amp;lt;revision&amp;gt;...] -- [&amp;lt;file&amp;gt;...]&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;那接下來進入下個章節 &lt;code&gt;fetch&lt;/code&gt; 學習抓取 &lt;code&gt;sub&lt;/code&gt; 這個遠端的資訊。&lt;/p&gt;
+&lt;h3 id=&#34;fetch&#34;&gt;fetch&lt;/h3&gt;
+&lt;p&gt;Fetch 可以抓取遠端資訊，把目前還沒載下來的資訊都抓下來。&lt;/p&gt;
+&lt;p&gt;現在我們把上一個指令中新增的 &lt;code&gt;sub&lt;/code&gt; Repository 下載下來。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git fetch sub
+remote: Enumerating objects: 6, &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;.
+remote: Counting objects: 100% &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;6/6&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;.
+remote: Compressing objects: 100% &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;3/3&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;.
+remote: Total &lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;delta 0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, reused &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;delta 0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, pack-reused &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+Unpacking objects: 100% &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;6/6&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;832&lt;/span&gt; bytes | 166.00 KiB/s, &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;.
+From github.com:yuuuna/sub-project
+ * &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;new branch&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;      master     -&amp;gt; sub/master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以驗證一下，現在下載完成了，再試一下 &lt;code&gt;git log&lt;/code&gt;，可以查看到 sub 的 master 分支 commit 內容囉！&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git log sub/master
+
+commit 19f7e1c17d4635733c96e1d512a3e5da2cbf2161 &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;sub/master&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+Author: Yuuna &amp;lt;k9532121@gmail.com&amp;gt;
+Date:   Sun May &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; 15:21:11 &lt;span style=&#34;color:#ae81ff&#34;&gt;2021&lt;/span&gt; +0800
+
+    Initial commit
+&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;END&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;cherry-pick&#34;&gt;cherry pick&lt;/h3&gt;
+&lt;p&gt;cherry-pick 的功能是「撿分支」，假如你目前的分支只想要其他分支的某幾個 Commit，那就很適合使用 cherry-pick 這個功能。&lt;/p&gt;
+&lt;p&gt;使用方法為：&lt;code&gt;git cherry-pick &amp;lt;commit SHA&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;目前專案分支如下，有兩條分支 &lt;code&gt;master&lt;/code&gt;、&lt;code&gt;create-menu&lt;/code&gt;。
+&lt;img src=&#34;image-1.png&#34; style=&#34;width: 70%; height: ; border: 1px #000 solid;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;那現在想要將 &lt;code&gt;create-menu&lt;/code&gt; 的 &lt;code&gt;91ccde&lt;/code&gt;(Create menu txt.) 紀錄放到 &lt;code&gt;master&lt;/code&gt; 分支上，&lt;br&gt;
+但不希望 &lt;code&gt;056791&lt;/code&gt;(Update menu txt.) 也併到 &lt;code&gt;master&lt;/code&gt; 上，&lt;br&gt;
+那這個情境就很適合使用 cherry-pick 這個方法。&lt;/p&gt;
+&lt;p&gt;僅要將目前的分支先切到 &lt;code&gt;master&lt;/code&gt;，然後使用 cherry-pick 想要的紀錄(&lt;code&gt;91ccde&lt;/code&gt;)，即可完成囉！&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git cherry-pick 91ccde
+&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;master 6550d7d&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; Create menu txt.
+ Date: Sun May &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; 17:03:46 &lt;span style=&#34;color:#ae81ff&#34;&gt;2021&lt;/span&gt; +0800
+ &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; file changed, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; insertions&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;+&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+ create mode &lt;span style=&#34;color:#ae81ff&#34;&gt;100644&lt;/span&gt; menu.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;再觀察一下線圖，可以看到 Commit 紀錄也存在於 &lt;code&gt;master&lt;/code&gt; 的分支上囉～
+&lt;img src=&#34;image-2.png&#34; style=&#34;width: 70%; height: ; border: 1px #000 solid;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;PS. 若是只想要這個 Commit 的修改紀錄，但是不要有 Commit 的送出紀錄，可以加上 &lt;code&gt;--no-commit&lt;/code&gt;，那僅會將調整紀錄放至暫存區。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git cherry-pick 91ccde --no-commit
+
+$ git status
+On branch master
+Your branch is behind &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt; by &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; commit, and can be fast-forwarded.
+  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;git pull&amp;#34;&lt;/span&gt; to update your local branch&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+
+Changes to be committed:
+  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;git restore --staged &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to unstage&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+	new file:   menu.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;diff&#34;&gt;diff&lt;/h3&gt;
+&lt;h3 id=&#34;apply&#34;&gt;apply&lt;/h3&gt;
+&lt;h3 id=&#34;format-patch&#34;&gt;format patch&lt;/h3&gt;
+&lt;h3 id=&#34;am&#34;&gt;am&lt;/h3&gt;
+&lt;h2 id=&#34;實作取得跨-repository-取得紀錄&#34;&gt;實作：取得跨 Repository 取得紀錄&lt;/h2&gt;
+&lt;p&gt;這邊將運用上面 Command 的介紹，組合出三種不同的方法，並可依照不同的情境來選擇方法。&lt;/p&gt;
+&lt;h3 id=&#34;方法一remote--cherry-pick&#34;&gt;方法一：remote + cherry pick&lt;/h3&gt;
+&lt;p&gt;這個方法最好懂，也最適合新手，方法就是去撿想要的 Commit 紀錄過來。&lt;/p&gt;
+&lt;p&gt;流程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 &lt;code&gt;git remote&lt;/code&gt; 遠端想要的 Repository&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;git fetch&lt;/code&gt; 剛剛設定的 Remote&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;git cherry-pick&lt;/code&gt; 把想要的分支撿過來，就完成囉！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那現在以案例來實作，目前有兩專案 &lt;code&gt;main-project&lt;/code&gt;、&lt;code&gt;sub-project&lt;/code&gt;，而 commit 紀錄如下圖：
+&lt;figure style=&#34;flex-grow: 253; flex-basis: 608px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1.png&#34; data-size=&#34;1328x524&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1_hue21b6b390192e926a684edc25d83eb38_115769_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1_hue21b6b390192e926a684edc25d83eb38_115769_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;1328&#34;
+				height=&#34;524&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;main-project&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;main-project&lt;/figcaption&gt;
+		
+	&lt;/figure&gt; &lt;figure style=&#34;flex-grow: 323; flex-basis: 776px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3.png&#34; data-size=&#34;1358x420&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3_huc7a28c1db8fa0cb0a97653b25999543f_69239_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3_huc7a28c1db8fa0cb0a97653b25999543f_69239_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;1358&#34;
+				height=&#34;420&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;sub-project&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;sub-project&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;目前想要在 &lt;code&gt;main-project&lt;/code&gt; 的 master 分支新增 &lt;code&gt;sub-project&lt;/code&gt; 的 &lt;code&gt;a61120&lt;/code&gt; Commit 紀錄，&lt;br&gt;
+操作如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 1. Remote 需要的 Repository&lt;/span&gt;
+$ git clone git@github.com:yuuuna/main-project.git
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 2. Fetch 剛剛 Remote 的遠端資訊下來&lt;/span&gt;
+$ git fetch sub
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# [驗證] 可以看想要的 commit SHA&lt;/span&gt;
+$ git log sub/master
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 3. cherry-pick 需要的分支過來&lt;/span&gt;
+$ git cherry-pick a61120f0a011bbd51688808e8ba91f2af39dbcd4
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 推送遠端，完成！&lt;/span&gt;
+$ git push&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;觀察 git graph，有成功將 Commit 紀錄新增在 &lt;code&gt;main-project&lt;/code&gt; 的 &lt;code&gt;master&lt;/code&gt; 中了。&lt;/p&gt;
+&lt;img src=&#34;image-4.png&#34; style=&#34;width: 70%; height: ; border: 1px #000 solid;&#34;&gt;
+&lt;h3 id=&#34;方法二diff--apply&#34;&gt;方法二：diff + apply&lt;/h3&gt;
+&lt;h3 id=&#34;方法三format-patch--am&#34;&gt;方法三：format patch + am&lt;/h3&gt;
+</description>
+        </item>
+        <item>
         <title>Spring Framework 使用 Jasypt 加密 config 檔案</title>
         <link>https://blog.yuuna.dev/p/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
         <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
