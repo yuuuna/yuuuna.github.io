@@ -1,4 +1,4 @@
-baseurl: https://yuuna.dev
+baseurl: https://blog.yuuna.dev
 languageCode: zh-TW #en-us
 theme: hugo-theme-stack
 paginate: 5
