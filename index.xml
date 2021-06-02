@@ -134,7 +134,7 @@ index 0000000..102db4a
 &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;@@ -0,0 +1 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+Add txt
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;那要把這個 Patch 放到暫存區，只要執行 &lt;code&gt;git patch &amp;lt;patch file&amp;gt;&lt;/code&gt; 即可。&lt;/p&gt;
+&lt;p&gt;那要把這個 Patch 放到暫存區，只要執行 &lt;code&gt;git apply &amp;lt;patch file&amp;gt;&lt;/code&gt; 即可。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# patch 的檔案名稱為 add.patch&lt;/span&gt;
 $ git apply add.patch
 
