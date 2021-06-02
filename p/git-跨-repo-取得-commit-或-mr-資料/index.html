@@ -301,7 +301,53 @@ Changes to be committed:
   <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore --staged &lt;file&gt;...&#34;</span> to unstage<span style="color:#f92672">)</span>
 	new file:   menu.txt</code></pre></div>
 <h3 id="diff">diff</h3>
+<p>Diff 為比對檔案的修改紀錄，可以比對當前修改的有哪些、或是哪些 commit 區間的修改紀錄，接下來介紹幾個比較常用的方法。</p>
+<ol>
+<li><code>git diff</code>：比對當前的修改紀錄，此比對是在執行 <code>git add</code> 之前的檔案。</li>
+<li><code>git diff --cached</code>：這個比對的時機點是 <code>git add</code> 之後，<code>git commit</code> 之前，適用於執行 commit 之前做的檢查！</li>
+<li><code>git diff &lt;commit SHA&gt;</code>：這個會比對填入的 commit SHA ~ 當前工作目錄區間的修改紀錄。若想要看上一個 Commit 的紀錄，可以使用 <code>git diff HEAD^</code>。</li>
+<li><code>git diff &lt;start commit SHA&gt; &lt;finish commit SHA&gt;</code>：這個就是比對兩個 commit 區間的修改紀錄囉。</li>
+</ol>
+<p>簡單對一個檔案進行了調整，使用 <code>git diff</code> 呈現如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">diff --git a/index.txt b/index.txt
+index 102db4a..853827d 100644
+<span style="color:#f92672">--- a/index.txt
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/index.txt
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -1 +1,3 @@
+</span><span style="color:#75715e"></span> Add txt
+<span style="color:#a6e22e">+
+</span><span style="color:#a6e22e">+Update txt
+</span><span style="color:#a6e22e"></span>(END)
+</code></pre></div>
+<p>這個應該蠻好懂的，大部分可能會使用 IDE 來幫助我們去看修改紀錄，不過這個指令搭配 <code>apply</code> 其實就可以幫助我們匯入此次調整紀錄！</p>
 <h3 id="apply">apply</h3>
+<p>Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講的話，就是同意一個 Patch 的修改紀錄，而這個 Patch 就是由 Diff 來產生。</p>
+<p>那同意一個 Patch 是什麼意思？<br>
+他會將這個 Patch 的修改紀錄，都放到暫存區裡面。</p>
+<p>說這麼多可能還是很模糊，直接來看實作比較好暸解！<br>
+這是 Patch 檔案的樣子，其實就是 Diff 後的結果XD
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">diff --git a/index.txt b/index.txt
+new file mode 100644
+index 0000000..102db4a
+<span style="color:#f92672">--- /dev/null
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/index.txt
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -0,0 +1 @@
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">+Add txt
+</span></code></pre></div></p>
+<p>那要把這個 Patch 放到暫存區，只要執行 <code>git patch &lt;patch file&gt;</code> 即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># patch 的檔案名稱為 add.patch</span>
+$ git apply add.patch
+
+<span style="color:#75715e"># 完成 apply 了，使用 status 檢查一下，確認已經進入暫存區了</span>
+$ git status
+On branch master
+Your branch is up to date with <span style="color:#e6db74">&#39;origin/master&#39;</span>.
+
+Untracked files:
+  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add &lt;file&gt;...&#34;</span> to include in what will be committed<span style="color:#f92672">)</span>
+	index.txt
+
+nothing added to commit but untracked files present <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add&#34;</span> to track<span style="color:#f92672">)</span></code></pre></div>
 <h3 id="format-patch">format patch</h3>
 <h3 id="am">am</h3>
 <h2 id="實作取得跨-repository-取得紀錄">實作：取得跨 Repository 取得紀錄</h2>

@@ -101,7 +101,53 @@ Changes to be committed:
   &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;git restore --staged &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to unstage&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
 	new file:   menu.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;diff&#34;&gt;diff&lt;/h3&gt;
+&lt;p&gt;Diff 為比對檔案的修改紀錄，可以比對當前修改的有哪些、或是哪些 commit 區間的修改紀錄，接下來介紹幾個比較常用的方法。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git diff&lt;/code&gt;：比對當前的修改紀錄，此比對是在執行 &lt;code&gt;git add&lt;/code&gt; 之前的檔案。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git diff --cached&lt;/code&gt;：這個比對的時機點是 &lt;code&gt;git add&lt;/code&gt; 之後，&lt;code&gt;git commit&lt;/code&gt; 之前，適用於執行 commit 之前做的檢查！&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git diff &amp;lt;commit SHA&amp;gt;&lt;/code&gt;：這個會比對填入的 commit SHA ~ 當前工作目錄區間的修改紀錄。若想要看上一個 Commit 的紀錄，可以使用 &lt;code&gt;git diff HEAD^&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git diff &amp;lt;start commit SHA&amp;gt; &amp;lt;finish commit SHA&amp;gt;&lt;/code&gt;：這個就是比對兩個 commit 區間的修改紀錄囉。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;簡單對一個檔案進行了調整，使用 &lt;code&gt;git diff&lt;/code&gt; 呈現如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;diff --git a/index.txt b/index.txt
+index 102db4a..853827d 100644
+&lt;span style=&#34;color:#f92672&#34;&gt;--- a/index.txt
+&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+++ b/index.txt
+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;@@ -1 +1,3 @@
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt; Add txt
+&lt;span style=&#34;color:#a6e22e&#34;&gt;+
+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+Update txt
+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;(END)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;這個應該蠻好懂的，大部分可能會使用 IDE 來幫助我們去看修改紀錄，不過這個指令搭配 &lt;code&gt;apply&lt;/code&gt; 其實就可以幫助我們匯入此次調整紀錄！&lt;/p&gt;
 &lt;h3 id=&#34;apply&#34;&gt;apply&lt;/h3&gt;
+&lt;p&gt;Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講的話，就是同意一個 Patch 的修改紀錄，而這個 Patch 就是由 Diff 來產生。&lt;/p&gt;
+&lt;p&gt;那同意一個 Patch 是什麼意思？&lt;br&gt;
+他會將這個 Patch 的修改紀錄，都放到暫存區裡面。&lt;/p&gt;
+&lt;p&gt;說這麼多可能還是很模糊，直接來看實作比較好暸解！&lt;br&gt;
+這是 Patch 檔案的樣子，其實就是 Diff 後的結果XD
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;diff --git a/index.txt b/index.txt
+new file mode 100644
+index 0000000..102db4a
+&lt;span style=&#34;color:#f92672&#34;&gt;--- /dev/null
+&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+++ b/index.txt
+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;@@ -0,0 +1 @@
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+Add txt
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;那要把這個 Patch 放到暫存區，只要執行 &lt;code&gt;git patch &amp;lt;patch file&amp;gt;&lt;/code&gt; 即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# patch 的檔案名稱為 add.patch&lt;/span&gt;
+$ git apply add.patch
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 完成 apply 了，使用 status 檢查一下，確認已經進入暫存區了&lt;/span&gt;
+$ git status
+On branch master
+Your branch is up to date with &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt;.
+
+Untracked files:
+  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;git add &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to include in what will be committed&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+	index.txt
+
+nothing added to commit but untracked files present &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;git add&amp;#34;&lt;/span&gt; to track&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;format-patch&#34;&gt;format patch&lt;/h3&gt;
 &lt;h3 id=&#34;am&#34;&gt;am&lt;/h3&gt;
 &lt;h2 id=&#34;實作取得跨-repository-取得紀錄&#34;&gt;實作：取得跨 Repository 取得紀錄&lt;/h2&gt;
