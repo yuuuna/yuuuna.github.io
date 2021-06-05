@@ -2,7 +2,7 @@
 author: Yuuna Chang
 title: "[GIT] 跨 Repo 取得 commit 或 MR 資料"
 date: 2021-05-30
-draft: true
+draft: false
 image: 
 categories:
     - GIT
@@ -152,7 +152,65 @@ Changes to be committed:
 
 ### diff
 
+Diff 為比對檔案的修改紀錄，可以比對當前修改的有哪些、或是哪些 commit 區間的修改紀錄，接下來介紹幾個比較常用的方法。
+
+1. `git diff`：比對當前的修改紀錄，此比對是在執行 `git add` 之前的檔案。
+2. `git diff --cached`：這個比對的時機點是 `git add` 之後，`git commit` 之前，適用於執行 commit 之前做的檢查！
+3. `git diff <commit SHA>`：這個會比對填入的 commit SHA ~ 當前工作目錄區間的修改紀錄。若想要看上一個 Commit 的紀錄，可以使用 `git diff HEAD^`。
+4. `git diff <start commit SHA> <finish commit SHA>`：這個就是比對兩個 commit 區間的修改紀錄囉。
+
+簡單對一個檔案進行了調整，使用 `git diff` 呈現如下：
+
+{{< highlight diff "lineNos=false" >}}
+diff --git a/index.txt b/index.txt
+index 102db4a..853827d 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1 +1,3 @@
+ Add txt
++
++Update txt
+(END)
+{{</ highlight >}}
+
+這個應該蠻好懂的，大部分可能會使用 IDE 來幫助我們去看修改紀錄，不過這個指令搭配 `apply` 其實就可以幫助我們匯入此次調整紀錄！
+
 ### apply
+
+Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講的話，就是同意一個 Diff 檔案的修改紀錄，而這個 Diff 檔案就是由 `git diff` 來產生。
+
+那同意一個 Diff 檔案是什麼意思？  
+他會將這個 Diff 檔案的修改紀錄，都放到暫存區裡面。
+
+說這麼多可能還是很模糊，直接來看實作比較好暸解！  
+這是 Diff 檔案的樣子，其實就是 `git diff` 後的結果XD
+{{< highlight diff "lineNos=false" >}}
+diff --git a/index.txt b/index.txt
+new file mode 100644
+index 0000000..102db4a
+--- /dev/null
++++ b/index.txt
+@@ -0,0 +1 @@
++Add txt
+{{</ highlight >}}
+
+那要把這個 Diff 放到暫存區，只要執行 `git apply <diff file>` 即可。
+
+{{< highlight sh "lineNos=false" >}}
+# diff 的檔案名稱為 add.diff
+$ git apply add.diff
+
+# 完成 apply 了，使用 status 檢查一下，確認已經進入暫存區了
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	index.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+{{</ highlight >}}
 
 ### format patch
 
@@ -199,6 +257,36 @@ $ git push
 {{< img src="image-4.png" width="70%" border="1px #000 solid" >}}
 
 ### 方法二：diff + apply
+
+若你是熟悉 Git 的使用，那這個方法你只要暸解了 `Diff` 與 `Apply` 的功能，可以知道其實也不會太難，輕鬆兩個指令就可以完成，也比起 `cherry-pick` 的方法精簡一些。
+
+流程如下：
+1. 使用 `git diff <commit 1> <commit 2> > update.diff` 將調整紀錄輸出成一個檔案，這裡名稱為 `update.diff`
+2. 到我要匯入的專案裡面，使用 `git apply update.diff`，就會把修改紀錄會進去暫存區了！
+
+那現在以案例來實作，目前有兩專案 `main-project`、`sub-project`，而 commit 紀錄如下圖：
+![main-project](image-5.png) ![sub-project](image-6.png)
+
+目前想要在 `main-project` 的 master 分支新增 `sub-project` 的 `a61120` Commit 紀錄，  
+操作如下：
+
+1. 先到 `sub-project` 專案目錄下：
+{{< highlight shell "lineNos=false" >}}
+# 產生 Diff 檔案，需要的是 19f7e1 與 a61120 區間的修改紀錄
+$ git diff 19f7e1 a61120 > update.diff
+{{</ highlight >}}
+
+2. 把 `update.diff` 放至 `main-project` 裡面，方便下個步驟直接使用
+
+3. 切到 `main-project` 專案目錄下：
+{{< highlight shell "lineNos=false" >}}
+# 使用 apply 將 update.diff 匯入至暫存區
+$ git apply update.diff
+{{</ highlight >}}
+
+這樣就完成囉！  
+只是這個方法是將調整紀錄放進暫存區，所以後續還要自己進行 `Commit` 的動作，才能 `Push` 呦  
+那可以看接下來第三個方法，也是我最推薦最方便快速的！
 
 ### 方法三：format patch + am
 
