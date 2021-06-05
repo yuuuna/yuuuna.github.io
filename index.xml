@@ -121,11 +121,11 @@ index 102db4a..853827d 100644
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;這個應該蠻好懂的，大部分可能會使用 IDE 來幫助我們去看修改紀錄，不過這個指令搭配 &lt;code&gt;apply&lt;/code&gt; 其實就可以幫助我們匯入此次調整紀錄！&lt;/p&gt;
 &lt;h3 id=&#34;apply&#34;&gt;apply&lt;/h3&gt;
-&lt;p&gt;Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講的話，就是同意一個 Patch 的修改紀錄，而這個 Patch 就是由 Diff 來產生。&lt;/p&gt;
-&lt;p&gt;那同意一個 Patch 是什麼意思？&lt;br&gt;
-他會將這個 Patch 的修改紀錄，都放到暫存區裡面。&lt;/p&gt;
+&lt;p&gt;Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講的話，就是同意一個 Diff 檔案的修改紀錄，而這個 Diff 檔案就是由 &lt;code&gt;git diff&lt;/code&gt; 來產生。&lt;/p&gt;
+&lt;p&gt;那同意一個 Diff 檔案是什麼意思？&lt;br&gt;
+他會將這個 Diff 檔案的修改紀錄，都放到暫存區裡面。&lt;/p&gt;
 &lt;p&gt;說這麼多可能還是很模糊，直接來看實作比較好暸解！&lt;br&gt;
-這是 Patch 檔案的樣子，其實就是 Diff 後的結果XD
+這是 Diff 檔案的樣子，其實就是 &lt;code&gt;git diff&lt;/code&gt; 後的結果XD
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;diff --git a/index.txt b/index.txt
 new file mode 100644
 index 0000000..102db4a
@@ -134,9 +134,9 @@ index 0000000..102db4a
 &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;@@ -0,0 +1 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+Add txt
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;那要把這個 Patch 放到暫存區，只要執行 &lt;code&gt;git apply &amp;lt;patch file&amp;gt;&lt;/code&gt; 即可。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# patch 的檔案名稱為 add.patch&lt;/span&gt;
-$ git apply add.patch
+&lt;p&gt;那要把這個 Diff 放到暫存區，只要執行 &lt;code&gt;git apply &amp;lt;diff file&amp;gt;&lt;/code&gt; 即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# diff 的檔案名稱為 add.diff&lt;/span&gt;
+$ git apply add.diff
 
 &lt;span style=&#34;color:#75715e&#34;&gt;# 完成 apply 了，使用 status 檢查一下，確認已經進入暫存區了&lt;/span&gt;
 $ git status
@@ -149,6 +149,26 @@ Untracked files:
 
 nothing added to commit but untracked files present &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;git add&amp;#34;&lt;/span&gt; to track&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;format-patch&#34;&gt;format patch&lt;/h3&gt;
+&lt;p&gt;在 GitHub 或是 GitLab 上，其實都可以直接產出 format-patch 這個功能後的檔案，&lt;br&gt;
+這個檔案內容是使用 email 的格式，範例如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-patch&#34; data-lang=&#34;patch&#34;&gt;From a61120f0a011bbd51688808e8ba91f2af39dbcd4 Mon Sep 17 00:00:00 2001
+From: Yuuna &amp;lt;k9532121@gmail.com&amp;gt;
+Date: Sun, 30 May 2021 17:02:01 +0800
+Subject: [PATCH] Add index.txt
+
+&lt;span style=&#34;color:#f92672&#34;&gt;---
+&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&lt;/span&gt; index.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+
+diff --git a/index.txt b/index.txt
+new file mode 100644
+index 0000000..102db4a
+&lt;span style=&#34;color:#f92672&#34;&gt;--- /dev/null
+&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+++ b/index.txt
+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;@@ -0,0 +1 @@
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+Add txt
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;am&#34;&gt;am&lt;/h3&gt;
 &lt;h2 id=&#34;實作取得跨-repository-取得紀錄&#34;&gt;實作：取得跨 Repository 取得紀錄&lt;/h2&gt;
 &lt;p&gt;這邊將運用上面 Command 的介紹，組合出三種不同的方法，並可依照不同的情境來選擇方法。&lt;/p&gt;
@@ -203,6 +223,56 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;觀察 git graph，有成功將 Commit 紀錄新增在 &lt;code&gt;main-project&lt;/code&gt; 的 &lt;code&gt;master&lt;/code&gt; 中了。&lt;/p&gt;
 &lt;img src=&#34;image-4.png&#34; style=&#34;width: 70%; height: ; border: 1px #000 solid;&#34;&gt;
 &lt;h3 id=&#34;方法二diff--apply&#34;&gt;方法二：diff + apply&lt;/h3&gt;
+&lt;p&gt;若你是熟悉 Git 的使用，那這個方法你只要暸解了 &lt;code&gt;Diff&lt;/code&gt; 與 &lt;code&gt;Apply&lt;/code&gt; 的功能，可以知道其實也不會太難，輕鬆兩個指令就可以完成，也比起 &lt;code&gt;cherry-pick&lt;/code&gt; 的方法精簡一些。&lt;/p&gt;
+&lt;p&gt;流程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 &lt;code&gt;git diff &amp;lt;commit 1&amp;gt; &amp;lt;commit 2&amp;gt; &amp;gt; update.diff&lt;/code&gt; 將調整紀錄輸出成一個檔案，這裡名稱為 &lt;code&gt;update.diff&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;到我要匯入的專案裡面，使用 &lt;code&gt;git apply update.diff&lt;/code&gt;，就會把修改紀錄會進去暫存區了！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那現在以案例來實作，目前有兩專案 &lt;code&gt;main-project&lt;/code&gt;、&lt;code&gt;sub-project&lt;/code&gt;，而 commit 紀錄如下圖：
+&lt;figure style=&#34;flex-grow: 466; flex-basis: 1118px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34; data-size=&#34;1324x284&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;1324&#34;
+				height=&#34;284&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;main-project&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;main-project&lt;/figcaption&gt;
+		
+	&lt;/figure&gt; &lt;figure style=&#34;flex-grow: 494; flex-basis: 1185px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34; data-size=&#34;1324x268&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;1324&#34;
+				height=&#34;268&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;sub-project&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;sub-project&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;目前想要在 &lt;code&gt;main-project&lt;/code&gt; 的 master 分支新增 &lt;code&gt;sub-project&lt;/code&gt; 的 &lt;code&gt;a61120&lt;/code&gt; Commit 紀錄，&lt;br&gt;
+操作如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;先到 &lt;code&gt;sub-project&lt;/code&gt; 專案目錄下：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 產生 Diff 檔案，需要的是 19f7e1 與 a61120 區間的修改紀錄&lt;/span&gt;
+$ git diff 19f7e1 a61120 &amp;gt; update.diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;把 &lt;code&gt;update.diff&lt;/code&gt; 放至 &lt;code&gt;main-project&lt;/code&gt; 裡面，方便下個步驟直接使用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;切到 &lt;code&gt;main-project&lt;/code&gt; 專案目錄下：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用 apply 將 update.diff 匯入至暫存區&lt;/span&gt;
+$ git apply update.diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這樣就完成囉！&lt;br&gt;
+只是這個方法是將調整紀錄放進暫存區，所以後續還要自己進行 &lt;code&gt;Commit&lt;/code&gt; 的動作，才能 &lt;code&gt;Push&lt;/code&gt; 呦&lt;br&gt;
+那可以看接下來第三個方法，也是我最推薦最方便快速的！&lt;/p&gt;
 &lt;h3 id=&#34;方法三format-patch--am&#34;&gt;方法三：format patch + am&lt;/h3&gt;
 </description>
         </item>

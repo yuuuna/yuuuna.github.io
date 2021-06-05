@@ -321,11 +321,11 @@ index 102db4a..853827d 100644
 </code></pre></div>
 <p>這個應該蠻好懂的，大部分可能會使用 IDE 來幫助我們去看修改紀錄，不過這個指令搭配 <code>apply</code> 其實就可以幫助我們匯入此次調整紀錄！</p>
 <h3 id="apply">apply</h3>
-<p>Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講的話，就是同意一個 Patch 的修改紀錄，而這個 Patch 就是由 Diff 來產生。</p>
-<p>那同意一個 Patch 是什麼意思？<br>
-他會將這個 Patch 的修改紀錄，都放到暫存區裡面。</p>
+<p>Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講的話，就是同意一個 Diff 檔案的修改紀錄，而這個 Diff 檔案就是由 <code>git diff</code> 來產生。</p>
+<p>那同意一個 Diff 檔案是什麼意思？<br>
+他會將這個 Diff 檔案的修改紀錄，都放到暫存區裡面。</p>
 <p>說這麼多可能還是很模糊，直接來看實作比較好暸解！<br>
-這是 Patch 檔案的樣子，其實就是 Diff 後的結果XD
+這是 Diff 檔案的樣子，其實就是 <code>git diff</code> 後的結果XD
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">diff --git a/index.txt b/index.txt
 new file mode 100644
 index 0000000..102db4a
@@ -334,9 +334,9 @@ index 0000000..102db4a
 </span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -0,0 +1 @@
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">+Add txt
 </span></code></pre></div></p>
-<p>那要把這個 Patch 放到暫存區，只要執行 <code>git apply &lt;patch file&gt;</code> 即可。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># patch 的檔案名稱為 add.patch</span>
-$ git apply add.patch
+<p>那要把這個 Diff 放到暫存區，只要執行 <code>git apply &lt;diff file&gt;</code> 即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># diff 的檔案名稱為 add.diff</span>
+$ git apply add.diff
 
 <span style="color:#75715e"># 完成 apply 了，使用 status 檢查一下，確認已經進入暫存區了</span>
 $ git status
@@ -349,6 +349,26 @@ Untracked files:
 
 nothing added to commit but untracked files present <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add&#34;</span> to track<span style="color:#f92672">)</span></code></pre></div>
 <h3 id="format-patch">format patch</h3>
+<p>在 GitHub 或是 GitLab 上，其實都可以直接產出 format-patch 這個功能後的檔案，<br>
+這個檔案內容是使用 email 的格式，範例如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-patch" data-lang="patch">From a61120f0a011bbd51688808e8ba91f2af39dbcd4 Mon Sep 17 00:00:00 2001
+From: Yuuna &lt;k9532121@gmail.com&gt;
+Date: Sun, 30 May 2021 17:02:01 +0800
+Subject: [PATCH] Add index.txt
+
+<span style="color:#f92672">---
+</span><span style="color:#f92672"></span> index.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+
+diff --git a/index.txt b/index.txt
+new file mode 100644
+index 0000000..102db4a
+<span style="color:#f92672">--- /dev/null
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/index.txt
+</span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -0,0 +1 @@
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">+Add txt
+</span></code></pre></div>
 <h3 id="am">am</h3>
 <h2 id="實作取得跨-repository-取得紀錄">實作：取得跨 Repository 取得紀錄</h2>
 <p>這邊將運用上面 Command 的介紹，組合出三種不同的方法，並可依照不同的情境來選擇方法。</p>
@@ -403,6 +423,56 @@ $ git push</code></pre></div>
 <p>觀察 git graph，有成功將 Commit 紀錄新增在 <code>main-project</code> 的 <code>master</code> 中了。</p>
 <img src="image-4.png" style="width: 70%; height: ; border: 1px #000 solid;">
 <h3 id="方法二diff--apply">方法二：diff + apply</h3>
+<p>若你是熟悉 Git 的使用，那這個方法你只要暸解了 <code>Diff</code> 與 <code>Apply</code> 的功能，可以知道其實也不會太難，輕鬆兩個指令就可以完成，也比起 <code>cherry-pick</code> 的方法精簡一些。</p>
+<p>流程如下：</p>
+<ol>
+<li>使用 <code>git diff &lt;commit 1&gt; &lt;commit 2&gt; &gt; update.diff</code> 將調整紀錄輸出成一個檔案，這裡名稱為 <code>update.diff</code></li>
+<li>到我要匯入的專案裡面，使用 <code>git apply update.diff</code>，就會把修改紀錄會進去暫存區了！</li>
+</ol>
+<p>那現在以案例來實作，目前有兩專案 <code>main-project</code>、<code>sub-project</code>，而 commit 紀錄如下圖：
+<figure style="flex-grow: 466; flex-basis: 1118px">
+		<a href="/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png" data-size="1324x284"><img src="/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png"
+				srcset="/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_480x0_resize_box_2.png 480w, /p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_1024x0_resize_box_2.png 1024w"
+				width="1324"
+				height="284"
+				loading="lazy"
+				alt="main-project">
+		</a>
+		
+		<figcaption>main-project</figcaption>
+		
+	</figure> <figure style="flex-grow: 494; flex-basis: 1185px">
+		<a href="/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png" data-size="1324x268"><img src="/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png"
+				srcset="/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_480x0_resize_box_2.png 480w, /p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_1024x0_resize_box_2.png 1024w"
+				width="1324"
+				height="268"
+				loading="lazy"
+				alt="sub-project">
+		</a>
+		
+		<figcaption>sub-project</figcaption>
+		
+	</figure></p>
+<p>目前想要在 <code>main-project</code> 的 master 分支新增 <code>sub-project</code> 的 <code>a61120</code> Commit 紀錄，<br>
+操作如下：</p>
+<ol>
+<li>
+<p>先到 <code>sub-project</code> 專案目錄下：
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 產生 Diff 檔案，需要的是 19f7e1 與 a61120 區間的修改紀錄</span>
+$ git diff 19f7e1 a61120 &gt; update.diff</code></pre></div></p>
+</li>
+<li>
+<p>把 <code>update.diff</code> 放至 <code>main-project</code> 裡面，方便下個步驟直接使用</p>
+</li>
+<li>
+<p>切到 <code>main-project</code> 專案目錄下：
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 使用 apply 將 update.diff 匯入至暫存區</span>
+$ git apply update.diff</code></pre></div></p>
+</li>
+</ol>
+<p>這樣就完成囉！<br>
+只是這個方法是將調整紀錄放進暫存區，所以後續還要自己進行 <code>Commit</code> 的動作，才能 <code>Push</code> 呦<br>
+那可以看接下來第三個方法，也是我最推薦最方便快速的！</p>
 <h3 id="方法三format-patch--am">方法三：format patch + am</h3>
 
 </section>
