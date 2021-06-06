@@ -149,7 +149,7 @@ Untracked files:
 
 nothing added to commit but untracked files present &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;use &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;git add&amp;#34;&lt;/span&gt; to track&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;format-patch&#34;&gt;format patch&lt;/h3&gt;
-&lt;p&gt;在 GitHub 或是 GitLab 上，其實都可以直接產出 format-patch 這個功能後的檔案，&lt;br&gt;
+&lt;p&gt;在 GitHub 或是 GitLab 上，其實都可以直接產出 format-patch 此功能產出後的檔案，&lt;br&gt;
 這個檔案內容是使用 email 的格式，範例如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-patch&#34; data-lang=&#34;patch&#34;&gt;From a61120f0a011bbd51688808e8ba91f2af39dbcd4 Mon Sep 17 00:00:00 2001
 From: Yuuna &amp;lt;k9532121@gmail.com&amp;gt;
@@ -168,8 +168,61 @@ index 0000000..102db4a
 &lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+++ b/index.txt
 &lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;@@ -0,0 +1 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+Add txt
+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;--
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;這個方法翻譯成指令：
+&lt;code&gt;git format-patch --stdout &amp;lt;start commit SHA&amp;gt; &amp;lt;finish commit SHA&amp;gt; &amp;gt; update.patch&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;那這邊僅介紹使用 GitHub 與 GitLab 產出的方法，&lt;br&gt;
+這兩個網站使用的方法是相同的，以下將以 GitHub 為範例，&lt;br&gt;
+那他支援 Commit 或是 Pull Request (Merge Request) 的使用。&lt;/p&gt;
+&lt;p&gt;假設目前我有一個 Commit 如下畫面：
+&lt;figure style=&#34;flex-grow: 218; flex-basis: 524px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34; data-size=&#34;2236x1024&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;2236&#34;
+				height=&#34;1024&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;a61120 commit&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;a61120 commit&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;
+這個 Commit 的網址是 &lt;code&gt;https://github.com/yuuuna/sub-project/commit/a61120f0a011bbd51688808e8ba91f2af39dbcd4&lt;/code&gt;，&lt;br&gt;
+那要產出 format-patch 的話，只要在網址最後面增加 &lt;code&gt;.patch&lt;/code&gt; 就可以囉！
+&lt;figure style=&#34;flex-grow: 355; flex-basis: 852px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34; data-size=&#34;2280x642&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;2280&#34;
+				height=&#34;642&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;a61120 patch&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;a61120 patch&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Pull Request (Merge Request) 的方法相同，只要在 Pull Request 的頁面網址後面增加 &lt;code&gt;.patch&lt;/code&gt;，都會是 email 格式的 Patch 檔案。&lt;/p&gt;
+&lt;p&gt;那這個檔案可以搭配 &lt;code&gt;am&lt;/code&gt; 指令，可以更加方便的匯入修改紀錄。&lt;/p&gt;
 &lt;h3 id=&#34;am&#34;&gt;am&lt;/h3&gt;
+&lt;p&gt;am 的功能為同意一個 Email 格式的 Patch，把這一個 Patch 的 Commit 修改紀錄，放進需要調整的 Repository 裡面，&lt;br&gt;
+而這個功能是搭配 &lt;code&gt;format patch&lt;/code&gt; 來進行使用。&lt;/p&gt;
+&lt;p&gt;am 的指令為：
+&lt;code&gt;git am -3 &amp;lt; &amp;lt;patch file&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;那假設目前有一個 Patch 檔案，名稱為 &lt;code&gt;AddIndex.patch&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 進行匯入此 Patch 至當前專案&lt;/span&gt;
+$ git am -3 &amp;lt; AddIndex.patch
+Applying: Add index.txt
+
+&lt;span style=&#34;color:#75715e&#34;&gt;# 同意成功，使用 log 確認有 commit 紀錄&lt;/span&gt;
+$ git log -1
+commit df73650b075149333a2e5b99572cbaa655fcda78 &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;HEAD -&amp;gt; master&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+Author: Yuuna &amp;lt;k9532121@gmail.com&amp;gt;
+Date:   Sun May &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; 17:02:01 &lt;span style=&#34;color:#ae81ff&#34;&gt;2021&lt;/span&gt; +0800
+
+    Add index.txt
+&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;END&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;這樣就把 &lt;code&gt;AddIndex.patch&lt;/code&gt; 的修改紀錄放至當前的 Repository 裡面囉！&lt;/p&gt;
 &lt;h2 id=&#34;實作取得跨-repository-取得紀錄&#34;&gt;實作：取得跨 Repository 取得紀錄&lt;/h2&gt;
 &lt;p&gt;這邊將運用上面 Command 的介紹，組合出三種不同的方法，並可依照不同的情境來選擇方法。&lt;/p&gt;
 &lt;h3 id=&#34;方法一remote--cherry-pick&#34;&gt;方法一：remote + cherry pick&lt;/h3&gt;
@@ -274,6 +327,87 @@ $ git apply update.diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 只是這個方法是將調整紀錄放進暫存區，所以後續還要自己進行 &lt;code&gt;Commit&lt;/code&gt; 的動作，才能 &lt;code&gt;Push&lt;/code&gt; 呦&lt;br&gt;
 那可以看接下來第三個方法，也是我最推薦最方便快速的！&lt;/p&gt;
 &lt;h3 id=&#34;方法三format-patch--am&#34;&gt;方法三：format patch + am&lt;/h3&gt;
+&lt;p&gt;這個方法是我最推薦的方法，只要暸解一下每個步驟的功能，可以簡單上手。&lt;/p&gt;
+&lt;p&gt;流程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 GitHub (or GitLab) 上到你想要產出修改紀錄的 Commit 或 Pull Request (or Merge Request) 頁面。&lt;/li&gt;
+&lt;li&gt;直接在網址最後方新增 &lt;code&gt;.patch&lt;/code&gt;，並下載此頁面的內容為檔案，這裡名稱為 &lt;code&gt;update.patch&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;將檔案放至本地要匯入的 Repository 中。(方便等一下指令直接使用此檔案)&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;git am -3 &amp;lt; update.patch&lt;/code&gt;，這樣就把檔案內的每一個 Commit 的修改紀錄都進去囉！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那現在以案例來實作，目前有兩專案 &lt;code&gt;main-project&lt;/code&gt;、&lt;code&gt;sub-project&lt;/code&gt;，而 commit 紀錄如下圖：
+&lt;figure style=&#34;flex-grow: 466; flex-basis: 1118px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34; data-size=&#34;1324x284&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;1324&#34;
+				height=&#34;284&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;main-project&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;main-project&lt;/figcaption&gt;
+		
+	&lt;/figure&gt; &lt;figure style=&#34;flex-grow: 494; flex-basis: 1185px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34; data-size=&#34;1324x268&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;1324&#34;
+				height=&#34;268&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;sub-project&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;sub-project&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;目前想要在 &lt;code&gt;main-project&lt;/code&gt; 的 master 分支新增 &lt;code&gt;sub-project&lt;/code&gt; 的 &lt;code&gt;a61120&lt;/code&gt; Commit 紀錄，&lt;br&gt;
+操作如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;到 GitHub &lt;code&gt;a61120&lt;/code&gt; 這一個 Commit 的頁面上。
+&lt;figure style=&#34;flex-grow: 218; flex-basis: 524px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34; data-size=&#34;2236x1024&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;2236&#34;
+				height=&#34;1024&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;a61120 commit&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;a61120 commit&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;直接在網址最後面新增 &lt;code&gt;.patch&lt;/code&gt;，然後下載這個頁面為檔案。
+&lt;figure style=&#34;flex-grow: 355; flex-basis: 852px&#34;&gt;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34; data-size=&#34;2280x642&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_1024x0_resize_box_2.png 1024w&#34;
+				width=&#34;2280&#34;
+				height=&#34;642&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;a61120 patch&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;a61120 patch&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;將檔案放進 &lt;code&gt;main-project&lt;/code&gt; 裡面。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;指令目錄切換到 &lt;code&gt;main-project&lt;/code&gt; 專案目錄下：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 進行匯入此 Patch 至當前專案&lt;/span&gt;
+$ git am -3 &amp;lt; update.patch
+Applying: Add index.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這樣就完成囉！&lt;/p&gt;
+&lt;p&gt;假若你同時維護多個相同底層的系統，&lt;br&gt;
+此時要修改底層的東西時，又要同步到各個相同底層的系統，&lt;br&gt;
+那這個方法會很方便去實現同步這件事，&lt;br&gt;
+將修改紀錄產生一個 Patch 檔案，然後再專案底下使用 am 匯入進去，&lt;br&gt;
+最後在 Push 至遠端，完成！&lt;/p&gt;
 </description>
         </item>
         <item>
