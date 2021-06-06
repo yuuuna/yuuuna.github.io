@@ -23,7 +23,7 @@ tags:
 
 Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。
 
-預設在 `git clone` 之後，會有一個預設的 `origin` 名稱，這是 git 給的預設名稱。  
+在 `git clone` 之後，會有一個預設的名稱 `origin`，這是 git 給的預設名稱。  
 可以使用 `git remote` 查看目前有設定的 remote。
 
 {{< highlight shell "lineNos=false" >}}
