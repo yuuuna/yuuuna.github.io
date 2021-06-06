@@ -214,7 +214,73 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 ### format patch
 
+在 GitHub 或是 GitLab 上，其實都可以直接產出 format-patch 此功能產出後的檔案，  
+這個檔案內容是使用 email 的格式，範例如下：
+
+{{< highlight patch "lineNos=false" >}}
+From a61120f0a011bbd51688808e8ba91f2af39dbcd4 Mon Sep 17 00:00:00 2001
+From: Yuuna <k9532121@gmail.com>
+Date: Sun, 30 May 2021 17:02:01 +0800
+Subject: [PATCH] Add index.txt
+
+---
+ index.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+
+diff --git a/index.txt b/index.txt
+new file mode 100644
+index 0000000..102db4a
+--- /dev/null
++++ b/index.txt
+@@ -0,0 +1 @@
++Add txt
+--
+{{</ highlight >}}
+
+這個方法翻譯成指令：
+`git format-patch --stdout <start commit SHA> <finish commit SHA> > update.patch`
+
+那這邊僅介紹使用 GitHub 與 GitLab 產出的方法，  
+這兩個網站使用的方法是相同的，以下將以 GitHub 為範例，  
+那他支援 Commit 或是 Pull Request (Merge Request) 的使用。
+
+假設目前我有一個 Commit 如下畫面：
+![a61120 commit](image-7.png)
+這個 Commit 的網址是 `https://github.com/yuuuna/sub-project/commit/a61120f0a011bbd51688808e8ba91f2af39dbcd4`，  
+那要產出 format-patch 的話，只要在網址最後面增加 `.patch` 就可以囉！
+![a61120 patch](image-8.png)
+
+Pull Request (Merge Request) 的方法相同，只要在 Pull Request 的頁面網址後面增加 `.patch`，都會是 email 格式的 Patch 檔案。
+
+那這個檔案可以搭配 `am` 指令，可以更加方便的匯入修改紀錄。
+
 ### am
+
+am 的功能為同意一個 Email 格式的 Patch，把這一個 Patch 的 Commit 修改紀錄，放進需要調整的 Repository 裡面，  
+而這個功能是搭配 `format patch` 來進行使用。
+
+am 的指令為：
+`git am -3 < <patch file>`
+
+那假設目前有一個 Patch 檔案，名稱為 `AddIndex.patch`
+
+{{< highlight sh "lineNos=false" >}}
+# 進行匯入此 Patch 至當前專案
+$ git am -3 < AddIndex.patch
+Applying: Add index.txt
+
+# 同意成功，使用 log 確認有 commit 紀錄
+$ git log -1
+commit df73650b075149333a2e5b99572cbaa655fcda78 (HEAD -> master)
+Author: Yuuna <k9532121@gmail.com>
+Date:   Sun May 30 17:02:01 2021 +0800
+
+    Add index.txt
+(END)
+{{</ highlight >}}
+
+這樣就把 `AddIndex.patch` 的修改紀錄放至當前的 Repository 裡面囉！
 
 ## 實作：取得跨 Repository 取得紀錄
 
@@ -289,4 +355,41 @@ $ git apply update.diff
 那可以看接下來第三個方法，也是我最推薦最方便快速的！
 
 ### 方法三：format patch + am
+
+這個方法是我最推薦的方法，只要暸解一下每個步驟的功能，可以簡單上手。
+
+流程如下：
+1. 在 GitHub (or GitLab) 上到你想要產出修改紀錄的 Commit 或 Pull Request (or Merge Request) 頁面。
+2. 直接在網址最後方新增 `.patch`，並下載此頁面的內容為檔案，這裡名稱為 `update.patch`。
+3. 將檔案放至本地要匯入的 Repository 中。(方便等一下指令直接使用此檔案)
+4. 使用 `git am -3 < update.patch`，這樣就把檔案內的每一個 Commit 的修改紀錄都進去囉！
+
+那現在以案例來實作，目前有兩專案 `main-project`、`sub-project`，而 commit 紀錄如下圖：
+![main-project](image-5.png) ![sub-project](image-6.png)
+
+目前想要在 `main-project` 的 master 分支新增 `sub-project` 的 `a61120` Commit 紀錄，  
+操作如下：
+
+1. 到 GitHub `a61120` 這一個 Commit 的頁面上。
+![a61120 commit](image-7.png)
+
+2. 直接在網址最後面新增 `.patch`，然後下載這個頁面為檔案。
+![a61120 patch](image-8.png)
+
+3. 將檔案放進 `main-project` 裡面。
+
+4. 指令目錄切換到 `main-project` 專案目錄下：
+{{< highlight shell "lineNos=false" >}}
+# 進行匯入此 Patch 至當前專案
+$ git am -3 < update.patch
+Applying: Add index.txt
+{{</ highlight >}}
+
+這樣就完成囉！
+
+假若你同時維護多個相同底層的系統，  
+此時要修改底層的東西時，又要同步到各個相同底層的系統，  
+那這個方法會很方便去實現同步這件事，  
+將修改紀錄產生一個 Patch 檔案，然後再專案底下使用 am 匯入進去，  
+最後在 Push 至遠端，完成！
 
