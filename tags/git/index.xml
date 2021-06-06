@@ -16,7 +16,7 @@
       <description>簡介 此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。
 Command 介紹 這邊預設對 Git 有一定的基礎 (clone、pull、push、log&amp;hellip;)，故僅介紹此篇主要使用的相關 Command。
 remote Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。
-預設在 git clone 之後，會有一個預設的 origin 名稱，這是 git 給的預設名稱。
+在 git clone 之後，會有一個預設的名稱 origin，這是 git 給的預設名稱。
 可以使用 git remote 查看目前有設定的 remote。
 $ git clone git@github.com:yuuuna/main-project.git Cloning into &amp;#39;main-project&amp;#39;... remote: Enumerating objects: 3, done. remote: Counting objects: 100% (3/3), done. remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 Receiving objects: 100% (3/3), done.</description>
     </item>

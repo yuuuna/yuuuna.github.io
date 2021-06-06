@@ -18,7 +18,7 @@
 &lt;p&gt;這邊預設對 Git 有一定的基礎 (clone、pull、push、log&amp;hellip;)，故僅介紹此篇主要使用的相關 Command。&lt;/p&gt;
 &lt;h3 id=&#34;remote&#34;&gt;remote&lt;/h3&gt;
 &lt;p&gt;Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。&lt;/p&gt;
-&lt;p&gt;預設在 &lt;code&gt;git clone&lt;/code&gt; 之後，會有一個預設的 &lt;code&gt;origin&lt;/code&gt; 名稱，這是 git 給的預設名稱。&lt;br&gt;
+&lt;p&gt;在 &lt;code&gt;git clone&lt;/code&gt; 之後，會有一個預設的名稱 &lt;code&gt;origin&lt;/code&gt;，這是 git 給的預設名稱。&lt;br&gt;
 可以使用 &lt;code&gt;git remote&lt;/code&gt; 查看目前有設定的 remote。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ git clone git@github.com:yuuuna/main-project.git
 Cloning into &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;main-project&amp;#39;&lt;/span&gt;...

@@ -4,7 +4,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='簡介 此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。
 Command 介紹 這邊預設對 Git 有一定的基礎 (clone、pull、push、log&amp;hellip;)，故僅介紹此篇主要使用的相關 Command。
 remote Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。
-預設在 git clone 之後，會有一個預設的 origin 名稱，這是 git 給的預設名稱。
+在 git clone 之後，會有一個預設的名稱 origin，這是 git 給的預設名稱。
 可以使用 git remote 查看目前有設定的 remote。
 $ git clone git@github.com:yuuuna/main-project.git Cloning into &amp;#39;main-project&amp;#39;... remote: Enumerating objects: 3, done. remote: Counting objects: 100% (3/3), done. remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 Receiving objects: 100% (3/3), done.'><title>[GIT] 跨 Repo 取得 commit 或 MR 資料</title>
 
@@ -14,7 +14,7 @@ $ git clone git@github.com:yuuuna/main-project.git Cloning into &amp;#39;main-pr
 <meta property='og:description' content='簡介 此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。
 Command 介紹 這邊預設對 Git 有一定的基礎 (clone、pull、push、log&amp;hellip;)，故僅介紹此篇主要使用的相關 Command。
 remote Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。
-預設在 git clone 之後，會有一個預設的 origin 名稱，這是 git 給的預設名稱。
+在 git clone 之後，會有一個預設的名稱 origin，這是 git 給的預設名稱。
 可以使用 git remote 查看目前有設定的 remote。
 $ git clone git@github.com:yuuuna/main-project.git Cloning into &amp;#39;main-project&amp;#39;... remote: Enumerating objects: 3, done. remote: Counting objects: 100% (3/3), done. remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 Receiving objects: 100% (3/3), done.'>
 <meta property='og:url' content='https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/'>
@@ -24,7 +24,7 @@ $ git clone git@github.com:yuuuna/main-project.git Cloning into &amp;#39;main-pr
 <meta name="twitter:description" content="簡介 此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。
 Command 介紹 這邊預設對 Git 有一定的基礎 (clone、pull、push、log&amp;hellip;)，故僅介紹此篇主要使用的相關 Command。
 remote Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。
-預設在 git clone 之後，會有一個預設的 origin 名稱，這是 git 給的預設名稱。
+在 git clone 之後，會有一個預設的名稱 origin，這是 git 給的預設名稱。
 可以使用 git remote 查看目前有設定的 remote。
 $ git clone git@github.com:yuuuna/main-project.git Cloning into &amp;#39;main-project&amp;#39;... remote: Enumerating objects: 3, done. remote: Counting objects: 100% (3/3), done. remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 Receiving objects: 100% (3/3), done.">
     </head>
@@ -218,7 +218,7 @@ $ git clone git@github.com:yuuuna/main-project.git Cloning into &amp;#39;main-pr
 <p>這邊預設對 Git 有一定的基礎 (clone、pull、push、log&hellip;)，故僅介紹此篇主要使用的相關 Command。</p>
 <h3 id="remote">remote</h3>
 <p>Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repository 設定名稱。</p>
-<p>預設在 <code>git clone</code> 之後，會有一個預設的 <code>origin</code> 名稱，這是 git 給的預設名稱。<br>
+<p>在 <code>git clone</code> 之後，會有一個預設的名稱 <code>origin</code>，這是 git 給的預設名稱。<br>
 可以使用 <code>git remote</code> 查看目前有設定的 remote。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone git@github.com:yuuuna/main-project.git
 Cloning into <span style="color:#e6db74">&#39;main-project&#39;</span>...
