@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-TW</language>
         <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>[GIT] 跨 Repo 取得 commit 或 MR 資料</title>
-        <link>https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</link>
+        <title>[GIT] 跨 Repo 取得 commit 或 PR 資料</title>
+        <link>https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/</link>
         <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</guid>
-        <description>&lt;h2 id=&#34;簡介&#34;&gt;簡介&lt;/h2&gt;
-&lt;p&gt;此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。&lt;/p&gt;
+        <guid>https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/</guid>
+        <description>&lt;img src="https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image.jpg" alt="Featured image of post [GIT] 跨 Repo 取得 commit 或 PR 資料" /&gt;&lt;h2 id=&#34;簡介&#34;&gt;簡介&lt;/h2&gt;
+&lt;p&gt;此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Pull Request (or Merge Request) 的方式。&lt;/p&gt;
 &lt;h2 id=&#34;command-介紹&#34;&gt;Command 介紹&lt;/h2&gt;
 &lt;p&gt;這邊預設對 Git 有一定的基礎 (clone、pull、push、log&amp;hellip;)，故僅介紹此篇主要使用的相關 Command。&lt;/p&gt;
 &lt;h3 id=&#34;remote&#34;&gt;remote&lt;/h3&gt;
@@ -177,8 +177,8 @@ index 0000000..102db4a
 那他支援 Commit 或是 Pull Request (Merge Request) 的使用。&lt;/p&gt;
 &lt;p&gt;假設目前我有一個 Commit 如下畫面：
 &lt;figure style=&#34;flex-grow: 218; flex-basis: 524px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34; data-size=&#34;2236x1024&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7.png&#34; data-size=&#34;2236x1024&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;2236&#34;
 				height=&#34;1024&#34;
 				loading=&#34;lazy&#34;
@@ -191,8 +191,8 @@ index 0000000..102db4a
 這個 Commit 的網址是 &lt;code&gt;https://github.com/yuuuna/sub-project/commit/a61120f0a011bbd51688808e8ba91f2af39dbcd4&lt;/code&gt;，&lt;br&gt;
 那要產出 format-patch 的話，只要在網址最後面增加 &lt;code&gt;.patch&lt;/code&gt; 就可以囉！
 &lt;figure style=&#34;flex-grow: 355; flex-basis: 852px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34; data-size=&#34;2280x642&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8.png&#34; data-size=&#34;2280x642&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;2280&#34;
 				height=&#34;642&#34;
 				loading=&#34;lazy&#34;
@@ -235,8 +235,8 @@ Date:   Sun May &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; 17:02:
 &lt;/ol&gt;
 &lt;p&gt;那現在以案例來實作，目前有兩專案 &lt;code&gt;main-project&lt;/code&gt;、&lt;code&gt;sub-project&lt;/code&gt;，而 commit 紀錄如下圖：
 &lt;figure style=&#34;flex-grow: 253; flex-basis: 608px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1.png&#34; data-size=&#34;1328x524&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1_hue21b6b390192e926a684edc25d83eb38_115769_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-1_hue21b6b390192e926a684edc25d83eb38_115769_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-1.png&#34; data-size=&#34;1328x524&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-1.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-1_hue21b6b390192e926a684edc25d83eb38_115769_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-1_hue21b6b390192e926a684edc25d83eb38_115769_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;1328&#34;
 				height=&#34;524&#34;
 				loading=&#34;lazy&#34;
@@ -246,8 +246,8 @@ Date:   Sun May &lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt; 17:02:
 		&lt;figcaption&gt;main-project&lt;/figcaption&gt;
 		
 	&lt;/figure&gt; &lt;figure style=&#34;flex-grow: 323; flex-basis: 776px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3.png&#34; data-size=&#34;1358x420&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3_huc7a28c1db8fa0cb0a97653b25999543f_69239_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-3_huc7a28c1db8fa0cb0a97653b25999543f_69239_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-3.png&#34; data-size=&#34;1358x420&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-3.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-3_huc7a28c1db8fa0cb0a97653b25999543f_69239_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-3_huc7a28c1db8fa0cb0a97653b25999543f_69239_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;1358&#34;
 				height=&#34;420&#34;
 				loading=&#34;lazy&#34;
@@ -284,8 +284,8 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/ol&gt;
 &lt;p&gt;那現在以案例來實作，目前有兩專案 &lt;code&gt;main-project&lt;/code&gt;、&lt;code&gt;sub-project&lt;/code&gt;，而 commit 紀錄如下圖：
 &lt;figure style=&#34;flex-grow: 466; flex-basis: 1118px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34; data-size=&#34;1324x284&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5.png&#34; data-size=&#34;1324x284&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;1324&#34;
 				height=&#34;284&#34;
 				loading=&#34;lazy&#34;
@@ -295,8 +295,8 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 		&lt;figcaption&gt;main-project&lt;/figcaption&gt;
 		
 	&lt;/figure&gt; &lt;figure style=&#34;flex-grow: 494; flex-basis: 1185px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34; data-size=&#34;1324x268&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6.png&#34; data-size=&#34;1324x268&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;1324&#34;
 				height=&#34;268&#34;
 				loading=&#34;lazy&#34;
@@ -337,8 +337,8 @@ $ git apply update.diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;那現在以案例來實作，目前有兩專案 &lt;code&gt;main-project&lt;/code&gt;、&lt;code&gt;sub-project&lt;/code&gt;，而 commit 紀錄如下圖：
 &lt;figure style=&#34;flex-grow: 466; flex-basis: 1118px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34; data-size=&#34;1324x284&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5.png&#34; data-size=&#34;1324x284&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-5_huc597def0e394da70273861cea05b8ad2_61552_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;1324&#34;
 				height=&#34;284&#34;
 				loading=&#34;lazy&#34;
@@ -348,8 +348,8 @@ $ git apply update.diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 		&lt;figcaption&gt;main-project&lt;/figcaption&gt;
 		
 	&lt;/figure&gt; &lt;figure style=&#34;flex-grow: 494; flex-basis: 1185px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34; data-size=&#34;1324x268&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6.png&#34; data-size=&#34;1324x268&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-6_huc5121b43edcd6f90c0d746a33454b2ab_63751_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;1324&#34;
 				height=&#34;268&#34;
 				loading=&#34;lazy&#34;
@@ -365,8 +365,8 @@ $ git apply update.diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;到 GitHub &lt;code&gt;a61120&lt;/code&gt; 這一個 Commit 的頁面上。
 &lt;figure style=&#34;flex-grow: 218; flex-basis: 524px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34; data-size=&#34;2236x1024&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7.png&#34; data-size=&#34;2236x1024&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-7_hu2694d6f6e20b6bbfebb1f434328d01ee_221782_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;2236&#34;
 				height=&#34;1024&#34;
 				loading=&#34;lazy&#34;
@@ -380,8 +380,8 @@ $ git apply update.diff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;直接在網址最後面新增 &lt;code&gt;.patch&lt;/code&gt;，然後下載這個頁面為檔案。
 &lt;figure style=&#34;flex-grow: 355; flex-basis: 852px&#34;&gt;
-		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34; data-size=&#34;2280x642&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8.png&#34;
-				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_1024x0_resize_box_2.png 1024w&#34;
+		&lt;a href=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8.png&#34; data-size=&#34;2280x642&#34;&gt;&lt;img src=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8.png&#34;
+				srcset=&#34;https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_480x0_resize_box_2.png 480w, https://blog.yuuna.dev/p/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-pr-%E8%B3%87%E6%96%99/image-8_hu8cd002f80fa2194f4053c960e0d98acf_142791_1024x0_resize_box_2.png 1024w&#34;
 				width=&#34;2280&#34;
 				height=&#34;642&#34;
 				loading=&#34;lazy&#34;
