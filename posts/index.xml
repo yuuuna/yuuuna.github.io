@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 皮丘勇闖程式界</title>
-    <link>https://yuuuna.github.io/posts/</link>
+    <link>https://blog.yuuna.dev/posts/</link>
     <description>Recent content in Posts on 皮丘勇闖程式界</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuuna.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[GIT] 跨 Repo 取得 commit 或 MR 資料</title>
-      <link>https://yuuuna.github.io/2021/05/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</link>
+      <link>https://blog.yuuna.dev/2021/05/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuuna.github.io/2021/05/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</guid>
+      <guid>https://blog.yuuna.dev/2021/05/git-%E8%B7%A8-repo-%E5%8F%96%E5%BE%97-commit-%E6%88%96-mr-%E8%B3%87%E6%96%99/</guid>
       <description>&lt;p&gt;此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>[Spring Framework] 使用 Jasypt 加密 config 檔案</title>
-      <link>https://yuuuna.github.io/2021/03/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
+      <link>https://blog.yuuna.dev/2021/03/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</link>
       <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuuna.github.io/2021/03/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
+      <guid>https://blog.yuuna.dev/2021/03/spring-framework-%E4%BD%BF%E7%94%A8-jasypt-%E5%8A%A0%E5%AF%86-config-%E6%AA%94%E6%A1%88/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.jasypt.org/index.html&#34;&gt;Jasypt&lt;/a&gt; 為 Java 的套件，提供開發人員用簡單的方法將加解密功能加入專案裡，而開發人員也不需要對密碼學有深入的理解。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hugo 紀錄</title>
-      <link>https://yuuuna.github.io/2021/03/hugo-%E7%B4%80%E9%8C%84/</link>
+      <link>https://blog.yuuna.dev/2021/03/hugo-%E7%B4%80%E9%8C%84/</link>
       <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuuna.github.io/2021/03/hugo-%E7%B4%80%E9%8C%84/</guid>
+      <guid>https://blog.yuuna.dev/2021/03/hugo-%E7%B4%80%E9%8C%84/</guid>
       <description>&lt;p&gt;首發的第一篇文章，來記錄一下使用 Hugo 來建立個人的 Blog。&lt;/p&gt;
 &lt;p&gt;簡單描述一下需要安裝、主題選擇、以及啟動方式。&lt;/p&gt;</description>
     </item>

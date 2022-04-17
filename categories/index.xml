@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 皮丘勇闖程式界</title>
-    <link>https://yuuuna.github.io/categories/</link>
+    <link>https://blog.yuuna.dev/categories/</link>
     <description>Recent content in Categories on 皮丘勇闖程式界</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://yuuuna.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GIT</title>
-      <link>https://yuuuna.github.io/categories/git/</link>
+      <link>https://blog.yuuna.dev/categories/git/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuuna.github.io/categories/git/</guid>
+      <guid>https://blog.yuuna.dev/categories/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring-Framework</title>
-      <link>https://yuuuna.github.io/categories/spring-framework/</link>
+      <link>https://blog.yuuna.dev/categories/spring-framework/</link>
       <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuuna.github.io/categories/spring-framework/</guid>
+      <guid>https://blog.yuuna.dev/categories/spring-framework/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://yuuuna.github.io/categories/hugo/</link>
+      <link>https://blog.yuuna.dev/categories/hugo/</link>
       <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://yuuuna.github.io/categories/hugo/</guid>
+      <guid>https://blog.yuuna.dev/categories/hugo/</guid>
       <description></description>
     </item>
     
