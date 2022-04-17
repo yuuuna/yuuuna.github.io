@@ -12,7 +12,8 @@
 # For developpers, if you modify this theme, put your images in `source/images` folder and
 # use grunt task `build` to synchronize assets
 
-baseURL = "https://blog.yuuna.dev"
+baseURL = "https://blog.yuuna.dev/"
+relativeURLs = true
 languageCode = "zh-tw"
 defaultContentLanguage = "zh-tw"
 title = "皮丘勇闖程式界"
