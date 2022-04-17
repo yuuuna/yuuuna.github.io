@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>紀錄 on 皮丘勇闖程式界</title>
+    <link>https://blog.yuuna.dev/tags/%E7%B4%80%E9%8C%84/</link>
+    <description>Recent content in 紀錄 on 皮丘勇闖程式界</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/tags/%E7%B4%80%E9%8C%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 紀錄</title>
+      <link>https://blog.yuuna.dev/2021/03/hugo-%E7%B4%80%E9%8C%84/</link>
+      <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yuuna.dev/2021/03/hugo-%E7%B4%80%E9%8C%84/</guid>
+      <description>&lt;p&gt;首發的第一篇文章，來記錄一下使用 Hugo 來建立個人的 Blog。&lt;/p&gt;
+&lt;p&gt;簡單描述一下需要安裝、主題選擇、以及啟動方式。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
