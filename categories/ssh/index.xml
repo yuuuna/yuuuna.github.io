@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SSH on 皮丘勇闖程式界</title>
+    <link>https://blog.yuuna.dev/categories/ssh/</link>
+    <description>Recent content in SSH on 皮丘勇闖程式界</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 17 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.yuuna.dev/categories/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SSH] 於 macOS 建立 SSH Key，並套用至 Github</title>
+      <link>https://blog.yuuna.dev/2022/04/ssh-%E6%96%BC-macos-%E5%BB%BA%E7%AB%8B-ssh-key%E4%B8%A6%E5%A5%97%E7%94%A8%E8%87%B3-github/</link>
+      <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yuuna.dev/2022/04/ssh-%E6%96%BC-macos-%E5%BB%BA%E7%AB%8B-ssh-key%E4%B8%A6%E5%A5%97%E7%94%A8%E8%87%B3-github/</guid>
+      <description>&lt;p&gt;SSH Key 用於非常多地方，最常見的 VM 連線、Github 連線等，設定上去就可以取代以往輸入帳號密碼的方式進行登入或是 git Push，而這邊將以使用 SSH Key 連線 Github 為例。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
