@@ -323,6 +323,13 @@
 <p>新增 <code>~/.ssh/config</code> 檔案，並且關聯 Host 為 github.com 的，要使用哪個私鑰</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Host github.com
 </span></span><span style="display:flex;"><span>    IdentityFile ~/.ssh/github.key
+</span></span></code></pre></div><p>若你有多組 SSH key，就會像這樣子，依序設定每個的對應</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Host github.com
+</span></span><span style="display:flex;"><span>    IdentityFile ~/.ssh/github.key
+</span></span><span style="display:flex;"><span>Host gitlab.com
+</span></span><span style="display:flex;"><span>    IdentityFile ~/.ssh/gitlab.key
+</span></span><span style="display:flex;"><span>Host bitbucket.org
+</span></span><span style="display:flex;"><span>    IdentityFile ~/.ssh/bitbucket.key
 </span></span></code></pre></div><p>設定完成就可以 Push 囉~</p>
               
 
