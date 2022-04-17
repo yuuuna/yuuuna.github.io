@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Archives on 皮丘勇闖程式界</title>
-    <link>https://blog.yuuna.dev/archives/</link>
+    <link>https://yuuuna.github.io/archives/</link>
     <description>Recent content in Archives on 皮丘勇闖程式界</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language><atom:link href="https://blog.yuuna.dev/archives/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-tw</language><atom:link href="https://yuuuna.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
