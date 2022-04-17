@@ -1,19 +1,17 @@
 ---
-author: Yuuna Chang
 title: "[GIT] 跨 Repo 取得 commit 或 MR 資料"
 date: 2021-05-30
 draft: false
-image: 
 categories:
     - GIT
-    - 技術分享
 tags:
     - GIT
+    - 技術分享
 ---
 
-## 簡介
-
 此篇文章主要使用 Command 的方式來操作，會先介紹一下會使用到的各個 Command 使用方法與功用，再介紹三種可以跨 Repository 取得 Commit 或 Merge Request (or Pull Request) 的方式。
+
+<!--more-->
 
 ## Command 介紹
 
@@ -26,7 +24,7 @@ Remote 為管理遠端 Repository 的功能，並可對每個連結的 Repositor
 在 `git clone` 之後，會有一個預設的名稱 `origin`，這是 git 給的預設名稱。  
 可以使用 `git remote` 查看目前有設定的 remote。
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git clone git@github.com:yuuuna/main-project.git
 Cloning into 'main-project'...
 remote: Enumerating objects: 3, done.
@@ -38,25 +36,25 @@ $ cd main-project
 
 $ git remote
 origin
-{{</ highlight >}}
+```
 
 使用 `git remote -v` 可以查看名稱 + Repository Url。
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git remote -v
 origin	git@github.com:yuuuna/main-project.git (fetch)
 origin	git@github.com:yuuuna/main-project.git (push)
-{{</ highlight >}}
+```
 
 使用 `git remote add <名稱> <git repo url>` 新增連結的遠端 Repository。
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git remote add sub git@github.com:yuuuna/sub-project.git
-{{</ highlight >}}
+```
 
 可以檢查一下剛剛新增的 remote，確認關聯成功！
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git remote
 origin
 sub
@@ -66,16 +64,16 @@ origin	git@github.com:yuuuna/main-project.git (fetch)
 origin	git@github.com:yuuuna/main-project.git (push)
 sub	git@github.com:yuuuna/sub-project.git (fetch)
 sub	git@github.com:yuuuna/sub-project.git (push)
-{{</ highlight >}}
+```
 
 目前設定了一個 `sub` 的遠端，但是可以發現目前沒有抓取此 Repo 的任何資訊，使用 `git log` 可觀察到目前還不認識 sub 裡面 master 這個分支。
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git log sub/master
 fatal: ambiguous argument 'sub/master': unknown revision or path not in the working tree.
 Use '--' to separate paths from revisions, like this:
 'git <command> [<revision>...] -- [<file>...]'
-{{</ highlight >}}
+```
 
 那接下來進入下個章節 `fetch` 學習抓取 `sub` 這個遠端的資訊。
 
@@ -85,7 +83,7 @@ Fetch 可以抓取遠端資訊，把目前還沒載下來的資訊都抓下來�
 
 現在我們把上一個指令中新增的 `sub` Repository 下載下來。
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git fetch sub
 remote: Enumerating objects: 6, done.
 remote: Counting objects: 100% (6/6), done.
@@ -94,11 +92,11 @@ remote: Total 6 (delta 0), reused 3 (delta 0), pack-reused 0
 Unpacking objects: 100% (6/6), 832 bytes | 166.00 KiB/s, done.
 From github.com:yuuuna/sub-project
  * [new branch]      master     -> sub/master
-{{</ highlight >}}
+```
 
 可以驗證一下，現在下載完成了，再試一下 `git log`，可以查看到 sub 的 master 分支 commit 內容囉！
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git log sub/master
 
 commit 19f7e1c17d4635733c96e1d512a3e5da2cbf2161 (sub/master)
@@ -107,7 +105,7 @@ Date:   Sun May 30 15:21:11 2021 +0800
 
     Initial commit
 (END)
-{{</ highlight >}}
+```
 
 ### cherry pick
 
@@ -124,20 +122,20 @@ cherry-pick 的功能是「撿分支」，假如你目前的分支只想要其�
 
 僅要將目前的分支先切到 `master`，然後使用 cherry-pick 想要的紀錄(`91ccde`)，即可完成囉！
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git cherry-pick 91ccde
 [master 6550d7d] Create menu txt.
  Date: Sun May 30 17:03:46 2021 +0800
  1 file changed, 2 insertions(+)
  create mode 100644 menu.txt
-{{</ highlight >}}
+```
 
 再觀察一下線圖，可以看到 Commit 紀錄也存在於 `master` 的分支上囉～
 {{< img src="image-2.png" width="70%" border="1px #000 solid" >}}
 
 PS. 若是只想要這個 Commit 的修改紀錄，但是不要有 Commit 的送出紀錄，可以加上 `--no-commit`，那僅會將調整紀錄放至暫存區。
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 $ git cherry-pick 91ccde --no-commit
 
 $ git status
@@ -148,7 +146,7 @@ Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 	new file:   menu.txt
-{{</ highlight >}}
+```
 
 ### diff
 
@@ -161,7 +159,7 @@ Diff 為比對檔案的修改紀錄，可以比對當前修改的有哪些、或
 
 簡單對一個檔案進行了調整，使用 `git diff` 呈現如下：
 
-{{< highlight diff "lineNos=false" >}}
+{{< codeblock "比較檔案" "diff" >}}
 diff --git a/index.txt b/index.txt
 index 102db4a..853827d 100644
 --- a/index.txt
@@ -171,7 +169,7 @@ index 102db4a..853827d 100644
 +
 +Update txt
 (END)
-{{</ highlight >}}
+{{< /codeblock >}}
 
 這個應該蠻好懂的，大部分可能會使用 IDE 來幫助我們去看修改紀錄，不過這個指令搭配 `apply` 其實就可以幫助我們匯入此次調整紀錄！
 
@@ -184,7 +182,7 @@ Apply 對一般使用 git 的人應該會比較陌生，Apply 的功能簡單講
 
 說這麼多可能還是很模糊，直接來看實作比較好暸解！  
 這是 Diff 檔案的樣子，其實就是 `git diff` 後的結果XD
-{{< highlight diff "lineNos=false" >}}
+{{< codeblock "比較檔案" "diff" >}}
 diff --git a/index.txt b/index.txt
 new file mode 100644
 index 0000000..102db4a
@@ -192,11 +190,11 @@ index 0000000..102db4a
 +++ b/index.txt
 @@ -0,0 +1 @@
 +Add txt
-{{</ highlight >}}
+{{< /codeblock >}}
 
 那要把這個 Diff 放到暫存區，只要執行 `git apply <diff file>` 即可。
 
-{{< highlight sh "lineNos=false" >}}
+```sh
 # diff 的檔案名稱為 add.diff
 $ git apply add.diff
 
@@ -210,14 +208,14 @@ Untracked files:
 	index.txt
 
 nothing added to commit but untracked files present (use "git add" to track)
-{{</ highlight >}}
+```
 
 ### format patch
 
 在 GitHub 或是 GitLab 上，其實都可以直接產出 format-patch 此功能產出後的檔案，  
 這個檔案內容是使用 email 的格式，範例如下：
 
-{{< highlight patch "lineNos=false" >}}
+{{< codeblock "format-patch" "diff" >}}
 From a61120f0a011bbd51688808e8ba91f2af39dbcd4 Mon Sep 17 00:00:00 2001
 From: Yuuna <k9532121@gmail.com>
 Date: Sun, 30 May 2021 17:02:01 +0800
@@ -236,7 +234,7 @@ index 0000000..102db4a
 @@ -0,0 +1 @@
 +Add txt
 --
-{{</ highlight >}}
+{{< /codeblock >}}
 
 這個方法翻譯成指令：
 `git format-patch --stdout <start commit SHA> <finish commit SHA> > update.patch`
@@ -265,7 +263,7 @@ am 的指令為：
 
 那假設目前有一個 Patch 檔案，名稱為 `AddIndex.patch`
 
-{{< highlight sh "lineNos=false" >}}
+```sh
 # 進行匯入此 Patch 至當前專案
 $ git am -3 < AddIndex.patch
 Applying: Add index.txt
@@ -278,7 +276,7 @@ Date:   Sun May 30 17:02:01 2021 +0800
 
     Add index.txt
 (END)
-{{</ highlight >}}
+```
 
 這樣就把 `AddIndex.patch` 的修改紀錄放至當前的 Repository 裡面囉！
 
@@ -301,7 +299,7 @@ Date:   Sun May 30 17:02:01 2021 +0800
 目前想要在 `main-project` 的 master 分支新增 `sub-project` 的 `a61120` Commit 紀錄，  
 操作如下：
 
-{{< highlight shell "lineNos=false" >}}
+```sh
 # 1. Remote 需要的 Repository
 $ git clone git@github.com:yuuuna/main-project.git
 
@@ -316,7 +314,7 @@ $ git cherry-pick a61120f0a011bbd51688808e8ba91f2af39dbcd4
 
 # 推送遠端，完成！
 $ git push
-{{</ highlight >}}
+```
 
 觀察 git graph，有成功將 Commit 紀錄新增在 `main-project` 的 `master` 中了。
 
@@ -337,18 +335,18 @@ $ git push
 操作如下：
 
 1. 先到 `sub-project` 專案目錄下：
-{{< highlight shell "lineNos=false" >}}
+```sh
 # 產生 Diff 檔案，需要的是 19f7e1 與 a61120 區間的修改紀錄
 $ git diff 19f7e1 a61120 > update.diff
-{{</ highlight >}}
+```
 
 2. 把 `update.diff` 放至 `main-project` 裡面，方便下個步驟直接使用
 
 3. 切到 `main-project` 專案目錄下：
-{{< highlight shell "lineNos=false" >}}
+```sh
 # 使用 apply 將 update.diff 匯入至暫存區
 $ git apply update.diff
-{{</ highlight >}}
+```
 
 這樣就完成囉！  
 只是這個方法是將調整紀錄放進暫存區，所以後續還要自己進行 `Commit` 的動作，才能 `Push` 呦  
@@ -379,11 +377,11 @@ $ git apply update.diff
 3. 將檔案放進 `main-project` 裡面。
 
 4. 指令目錄切換到 `main-project` 專案目錄下：
-{{< highlight shell "lineNos=false" >}}
+```sh
 # 進行匯入此 Patch 至當前專案
 $ git am -3 < update.patch
 Applying: Add index.txt
-{{</ highlight >}}
+```
 
 這樣就完成囉！
 
